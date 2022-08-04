@@ -40,57 +40,61 @@ class MainMenuScreen extends StatelessWidget {
               ),
             ),
           ),
-        ),
-        rectangularMenuArea: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                audioController.playSfx(SfxType.buttonTap);
-                GoRouter.of(context).go('/play');
-              },
-              child: const Text('Play'),
-            ),
-            _gap,
-            if (gamesServicesController != null) ...[
-              _hideUntilReady(
-                ready: gamesServicesController.signedIn,
-                child: ElevatedButton(
-                  onPressed: () => gamesServicesController.showAchievements(),
-                  child: const Text('Achievements'),
+          rectangularMenuArea: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+
+                GestureDetector(
+        onTap: () {
+                  audioController.playSfx(SfxType.buttonTap);
+                  GoRouter.of(context).go('/play');
+                },
+                   child: Image.asset('images/the_image.png')
+                ),
+
+
+             
+              _gap,
+              if (gamesServicesController != null) ...[
+                _hideUntilReady(
+                  ready: gamesServicesController.signedIn,
+                  child: ElevatedButton(
+                    onPressed: () => gamesServicesController.showAchievements(),
+                    child: const Text('Achievements'),
+                  ),
+                ),
+                _gap,
+                _hideUntilReady(
+                  ready: gamesServicesController.signedIn,
+                  child: ElevatedButton(
+                    onPressed: () => gamesServicesController.showLeaderboard(),
+                    child: const Text('Leaderboard'),
+                  ),
+                ),
+                _gap,
+              ],
+              ElevatedButton(
+                onPressed: () => GoRouter.of(context).go('/settings'),
+                child: const Text('Ajustes'),
+              ),
+              _gap,
+              Padding(
+                padding: const EdgeInsets.only(top: 32),
+                child: ValueListenableBuilder<bool>(
+                  valueListenable: settingsController.muted,
+                  builder: (context, muted, child) {
+                    return IconButton(
+                      onPressed: () => settingsController.toggleMuted(),
+                      icon: Icon(muted ? Icons.volume_off : Icons.volume_up),
+                    );
+                  },
                 ),
               ),
               _gap,
-              _hideUntilReady(
-                ready: gamesServicesController.signedIn,
-                child: ElevatedButton(
-                  onPressed: () => gamesServicesController.showLeaderboard(),
-                  child: const Text('Leaderboard'),
-                ),
-              ),
+              const Text('Music by Mr Smith'),
               _gap,
             ],
-            ElevatedButton(
-              onPressed: () => GoRouter.of(context).go('/settings'),
-              child: const Text('Settings'),
-            ),
-            _gap,
-            Padding(
-              padding: const EdgeInsets.only(top: 32),
-              child: ValueListenableBuilder<bool>(
-                valueListenable: settingsController.muted,
-                builder: (context, muted, child) {
-                  return IconButton(
-                    onPressed: () => settingsController.toggleMuted(),
-                    icon: Icon(muted ? Icons.volume_off : Icons.volume_up),
-                  );
-                },
-              ),
-            ),
-            _gap,
-            const Text('Music by Mr Smith'),
-            _gap,
-          ],
+          ),
         ),
       ),
     );
