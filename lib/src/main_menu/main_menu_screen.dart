@@ -26,12 +26,12 @@ class MainMenuScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: palette.backgroundMain,
       body: ResponsiveScreen(
-        mainAreaProminence: 0.45,
+        mainAreaProminence: 0.85,
         squarishMainArea: Center(
           child: Transform.rotate(
-            angle: -0.1,
+            angle: -0.15,
             child: const Text(
-              'Flutter Game Template!',
+              'RECOVIDA',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontFamily: 'Permanent Marker',

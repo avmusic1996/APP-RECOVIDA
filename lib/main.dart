@@ -81,7 +81,7 @@ void guardedMain() {
     SystemUiMode.edgeToEdge,
   );
 
-  // TODO: When ready, uncomment the following lines to enable integrations.
+  // f
   //       Read the README for more info on each integration.
 
   AdsController? adsController;
