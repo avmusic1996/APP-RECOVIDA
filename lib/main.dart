@@ -10,6 +10,7 @@
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:logging/logging.dart';
@@ -73,7 +74,6 @@ void guardedMain() {
         '${record.loggerName}: '
         '${record.message}');
   });
-
   WidgetsFlutterBinding.ensureInitialized();
 
   _log.info('Going full screen');
@@ -110,15 +110,17 @@ void guardedMain() {
   //   inAppPurchaseController.restorePurchases();
   // }
 
-  runApp(
-    MyApp(
-      settingsPersistence: LocalStorageSettingsPersistence(),
-      playerProgressPersistence: LocalStoragePlayerProgressPersistence(),
-      inAppPurchaseController: inAppPurchaseController,
-      adsController: adsController,
-      gamesServicesController: gamesServicesController,
-    ),
-  );
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.landscapeLeft,
+    DeviceOrientation.landscapeRight,
+  ]).then((value) => runApp(MyApp(
+        settingsPersistence: LocalStorageSettingsPersistence(),
+        playerProgressPersistence: LocalStoragePlayerProgressPersistence(),
+        inAppPurchaseController: inAppPurchaseController,
+        adsController: adsController,
+        gamesServicesController: gamesServicesController,
+      )));
 }
 
 Logger _log = Logger('main.dart');
