@@ -2,6 +2,8 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -12,6 +14,7 @@ import '../games_services/games_services.dart';
 import '../settings/settings.dart';
 import '../style/palette.dart';
 import '../style/responsive_screen.dart';
+import 'package:lottie/lottie.dart';
 
 class MainMenuScreen extends StatelessWidget {
   const MainMenuScreen({super.key});
@@ -24,7 +27,6 @@ class MainMenuScreen extends StatelessWidget {
     final audioController = context.watch<AudioController>();
 
     return Scaffold(
-      //backgroundColor: palette.backgroundMain,
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -32,21 +34,60 @@ class MainMenuScreen extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
+
+        // alignment: Alignment.topCenter,
+        // child:
+        //     Column(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
+        //   Row(
+        //     mainAxisAlignment: MainAxisAlignment.end,
+        //     children: [
+        //       GestureDetector(
+        //           onTap: () {
+        //             audioController.playSfx(SfxType.buttonTap);
+        //             GoRouter.of(context).go('/settings');
+        //           },
+        //           child: Image(
+        //             height: 40,
+        //             image: AssetImage('assets/images/configuracion.png'),
+        //           )),
+        //     ],
+        //   ),
+        //   Lottie.asset('assets/images/logo.json'),
+        //   GestureDetector(
+        //       child: Image(
+        //     height: 170,
+        //     image: AssetImage('assets/images/recovida.png'),
+        //   )),
+        //   GestureDetector(
+        //     child: const Text(
+        //       'AYUDANOS A AYUDARTE',
+        //       textAlign: TextAlign.center,
+        //       style: TextStyle(
+        //         fontWeight: FontWeight.bold,
+        //         fontFamily: 'Arial',
+        //         fontSize: 20,
+        //         height: 1,
+        //         color: Colors.white,
+        //       ),
+        //     ),
+        //   ),
+        //   _gap,
+        //   GestureDetector(
+        //       onTap: () {
+        //         audioController.playSfx(SfxType.buttonTap);
+
+        //         GoRouter.of(context).go('/play');
+        //       },
+        //       child: Image(
+        //         height: 20,
+        //         image: AssetImage('assets/images/boton.png'),
+        //       )),
+        //   _gap,
+        // ]),
+
         child: ResponsiveScreen(
-          mainAreaProminence: 0.45,
           topMessageArea: Column(
             children: [
-              // GestureDetector(
-              //     onTap: () {
-              //       audioController.playSfx(SfxType.buttonTap);
-              //       GoRouter.of(context).go('/settings');
-              //     },
-              //     child: Align(
-              //         alignment: Alignment.center,
-              //         child: Image(
-              //           height: 140,
-              //           image: AssetImage('assets/images/logo.gif'),
-              //         ))),
               GestureDetector(
                   onTap: () {
                     audioController.playSfx(SfxType.buttonTap);
@@ -60,33 +101,21 @@ class MainMenuScreen extends StatelessWidget {
                       ))),
             ],
           ),
-          squarishMainArea: Center(
-            child: Column(
-              children: [
-                GestureDetector(
-                    onTap: () {
-                      audioController.playSfx(SfxType.buttonTap);
-                      GoRouter.of(context).go('/settings');
-                    },
-                    child: Align(
-                        alignment: Alignment.center,
-                        child: Image(
-                          height: 140,
-                          image: AssetImage('assets/images/logo.gif'),
-                        ))),
-                GestureDetector(
-                    child: const Align(
-                        alignment: Alignment.center,
-                        child: Image(
-                          height: 160,
-                          image: AssetImage('assets/images/recovida.png'),
-                        ))),
-              ],
-            ),
-          ),
-          rectangularMenuArea: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
+          mainAreaProminence: 0.85,
+          squarishMainArea: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            // mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              GestureDetector(
+                child: Image(
+                    height: 200, image: AssetImage('assets/images/logo.gif')),
+              ),
+              //Lottie.asset('assets/images/logo.json'),
+              GestureDetector(
+                  child: Image(
+                height: 180,
+                image: AssetImage('assets/images/recovida.png'),
+              )),
               GestureDetector(
                   onTap: () {
                     audioController.playSfx(SfxType.buttonTap);
@@ -97,7 +126,7 @@ class MainMenuScreen extends StatelessWidget {
                     height: 50,
                     image: AssetImage('assets/images/boton.png'),
                   )),
-              _gap,
+
               if (gamesServicesController != null) ...[
                 _hideUntilReady(
                   ready: gamesServicesController.signedIn,
@@ -114,20 +143,10 @@ class MainMenuScreen extends StatelessWidget {
                     child: const Text('Leaderboard'),
                   ),
                 ),
-                _gap,
+                // _gap,
               ],
-              GestureDetector(
-                  onTap: () {
-                    audioController.playSfx(SfxType.buttonTap);
-                    GoRouter.of(context).go('/settings');
-                  },
-                  child: Align(
-                      //alignment: Alignment.centerRight,
-                      child: Image(
-                    height: 40,
-                    image: AssetImage('assets/images/configuracion.png'),
-                  ))),
-              _gap,
+
+              //_gap,
               // Padding(
               //   padding: const EdgeInsets.only(top: 32),
               //   child: ValueListenableBuilder<bool>(
@@ -141,8 +160,21 @@ class MainMenuScreen extends StatelessWidget {
               //   ),
               // ),
               // _gap,
-              // const Text('Music by Mr Smith'),
+              // const Text('Musica'),
               // _gap,
+            ],
+          ),
+          rectangularMenuArea: Column(
+            children: [
+              GestureDetector(
+                  onTap: () {
+                    audioController.playSfx(SfxType.buttonTap);
+                    GoRouter.of(context).go('/settings');
+                  },
+                  child: Image(
+                    height: 40,
+                    image: AssetImage('assets/images/configuracion.png'),
+                  )),
             ],
           ),
         ),
@@ -173,5 +205,6 @@ class MainMenuScreen extends StatelessWidget {
     );
   }
 
-  static const _gap = SizedBox(height: 10);
+  static const _gap = SizedBox(height: 30);
+  static const _gap1 = SizedBox(height: 10);
 }
