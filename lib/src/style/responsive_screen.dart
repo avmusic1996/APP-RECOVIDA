@@ -27,7 +27,7 @@ class ResponsiveScreen extends StatelessWidget {
     required this.squarishMainArea,
     required this.rectangularMenuArea,
     this.topMessageArea = const SizedBox.shrink(),
-    this.mainAreaProminence = 0.8,
+    this.mainAreaProminence = 10,
     super.key,
   });
 
@@ -37,12 +37,12 @@ class ResponsiveScreen extends StatelessWidget {
       builder: (context, constraints) {
         // This widget wants to fill the whole screen.
         final size = constraints.biggest;
-        final padding = EdgeInsets.all(size.shortestSide / 30);
+        final padding = EdgeInsets.all(size.shortestSide / 200);
 
-        if (size.height >= size.width) {
+        if (size.height >= 900) {
           // "Portrait" / "mobile" mode.
           return Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SafeArea(
                 bottom: false,
@@ -52,7 +52,7 @@ class ResponsiveScreen extends StatelessWidget {
                 ),
               ),
               Expanded(
-                flex: (mainAreaProminence * 100).round(),
+                flex: (mainAreaProminence * 20).round(),
                 child: SafeArea(
                   top: false,
                   bottom: false,
@@ -72,13 +72,13 @@ class ResponsiveScreen extends StatelessWidget {
           );
         } else {
           // "Landscape" / "tablet" mode.
-          final isLarge = size.width > 900;
+          final isLarge = size.width > 1000;
 
-          return Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Expanded(
-                flex: isLarge ? 7 : 5,
+                flex: isLarge ? 1 : 1,
                 child: SafeArea(
                   right: false,
                   maintainBottomViewPadding: true,
@@ -87,7 +87,7 @@ class ResponsiveScreen extends StatelessWidget {
                 ),
               ),
               Expanded(
-                flex: 3,
+                flex: 5,
                 child: Column(
                   children: [
                     SafeArea(

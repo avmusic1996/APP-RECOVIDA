@@ -20,19 +20,42 @@ class LevelSelectionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
     final playerProgress = context.watch<PlayerProgress>();
+    final audioController = context.watch<AudioController>();
 
     return Scaffold(
-      backgroundColor: palette.backgroundLevelSelection,
-      body: ResponsiveScreen(
-        squarishMainArea: Column(
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: ExactAssetImage('assets/images/fondo20.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Column(
           children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                GestureDetector(
+                    onTap: () {
+                      audioController.playSfx(SfxType.buttonTap);
+                      GoRouter.of(context).go('/settings');
+                    },
+                    child: Image(
+                      height: 40,
+                      image: AssetImage('assets/images/configuracion.png'),
+                    )),
+              ],
+            ),
             const Padding(
               padding: EdgeInsets.all(16),
               child: Center(
                 child: Text(
-                  'Select level',
-                  style:
-                      TextStyle(fontFamily: 'Permanent Marker', fontSize: 30),
+                  'Selecciona el nivel',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontFamily: 'arial',
+                      fontSize: 30),
                 ),
               ),
             ),
@@ -42,6 +65,7 @@ class LevelSelectionScreen extends StatelessWidget {
                 children: [
                   for (final level in gameLevels)
                     ListTile(
+                      //style: TextStyle(),
                       enabled: playerProgress.highestLevelReached >=
                           level.number - 1,
                       onTap: () {
@@ -53,18 +77,32 @@ class LevelSelectionScreen extends StatelessWidget {
                       },
                       leading: Text(level.number.toString()),
                       title: Text('Level #${level.number}'),
+                      textColor: Colors.white,
                     )
                 ],
               ),
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                GestureDetector(
+                    onTap: () {
+                      GoRouter.of(context).pop();
+                    },
+                    child: Image(
+                      height: 50,
+                      image: AssetImage('assets/images/atras.png'),
+                    )),
+              ],
+            ),
           ],
         ),
-        rectangularMenuArea: ElevatedButton(
-          onPressed: () {
-            GoRouter.of(context).pop();
-          },
-          child: const Text('Back'),
-        ),
+        // rectangularMenuArea: ElevatedButton(
+        //   onPressed: () {
+        //     GoRouter.of(context).pop();
+        //   },
+        //   child: const Text('Back'),
+        // ),
       ),
     );
   }

@@ -2,6 +2,8 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -12,6 +14,7 @@ import '../games_services/games_services.dart';
 import '../settings/settings.dart';
 import '../style/palette.dart';
 import '../style/responsive_screen.dart';
+import 'package:lottie/lottie.dart';
 
 class MainMenuScreen extends StatelessWidget {
   const MainMenuScreen({super.key});
@@ -24,73 +27,132 @@ class MainMenuScreen extends StatelessWidget {
     final audioController = context.watch<AudioController>();
 
     return Scaffold(
-      backgroundColor: palette.backgroundMain,
-      body: ResponsiveScreen(
-        mainAreaProminence: 0.45,
-        squarishMainArea: Center(
-          child: Transform.rotate(
-            angle: -0.1,
-            child: const Text(
-              'Flutter Game Template!',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: 'Permanent Marker',
-                fontSize: 55,
-                height: 1,
-              ),
-            ),
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: ExactAssetImage('assets/images/fondo2.png'),
+            fit: BoxFit.cover,
           ),
         ),
-        rectangularMenuArea: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            ElevatedButton(
-              onPressed: () {
+
+        // alignment: Alignment.topCenter,
+        // child:
+        //     Column(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
+        //   Row(
+        //     mainAxisAlignment: MainAxisAlignment.end,
+        //     children: [
+        //       GestureDetector(
+        //           onTap: () {
+        //             audioController.playSfx(SfxType.buttonTap);
+        //             GoRouter.of(context).go('/settings');
+        //           },
+        //           child: Image(
+        //             height: 40,
+        //             image: AssetImage('assets/images/configuracion.png'),
+        //           )),
+        //     ],
+        //   ),
+        //   Lottie.asset('assets/images/logo.json'),
+        //   GestureDetector(
+        //       child: Image(
+        //     height: 170,
+        //     image: AssetImage('assets/images/recovida.png'),
+        //   )),
+        //   GestureDetector(
+        //     child: const Text(
+        //       'AYUDANOS A AYUDARTE',
+        //       textAlign: TextAlign.center,
+        //       style: TextStyle(
+        //         fontWeight: FontWeight.bold,
+        //         fontFamily: 'Arial',
+        //         fontSize: 20,
+        //         height: 1,
+        //         color: Colors.white,
+        //       ),
+        //     ),
+        //   ),
+        //   _gap,
+        //   GestureDetector(
+        //       onTap: () {
+        //         audioController.playSfx(SfxType.buttonTap);
+
+        //         GoRouter.of(context).go('/play');
+        //       },
+        //       child: Image(
+        //         height: 20,
+        //         image: AssetImage('assets/images/boton.png'),
+        //       )),
+        //   _gap,
+        // ]),
+
+        child: ResponsiveScreen(
+          mainAreaProminence: 0.85,
+          squarishMainArea: GestureDetector(
+              onTap: () {
                 audioController.playSfx(SfxType.buttonTap);
-                GoRouter.of(context).go('/play');
+                GoRouter.of(context).go('/settings');
               },
-              child: const Text('Play'),
-            ),
-            _gap,
-            if (gamesServicesController != null) ...[
-              _hideUntilReady(
-                ready: gamesServicesController.signedIn,
-                child: ElevatedButton(
-                  onPressed: () => gamesServicesController.showAchievements(),
-                  child: const Text('Achievements'),
+              child: Image(
+                height: 20,
+                image: AssetImage('assets/images/configuracion.png'),
+              )),
+          rectangularMenuArea: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              GestureDetector(
+                  child: Image(
+                height: 120,
+                image: AssetImage('assets/images/recovida.png'),
+              )),
+              GestureDetector(
+                  onTap: () {
+                    audioController.playSfx(SfxType.buttonTap);
+
+                    GoRouter.of(context).go('/play');
+                  },
+                  child: Image(
+                    height: 50,
+                    image: AssetImage('assets/images/boton.png'),
+                  )),
+
+              if (gamesServicesController != null) ...[
+                _hideUntilReady(
+                  ready: gamesServicesController.signedIn,
+                  child: ElevatedButton(
+                    onPressed: () => gamesServicesController.showAchievements(),
+                    child: const Text('Achievements'),
+                  ),
                 ),
-              ),
-              _gap,
-              _hideUntilReady(
-                ready: gamesServicesController.signedIn,
-                child: ElevatedButton(
-                  onPressed: () => gamesServicesController.showLeaderboard(),
-                  child: const Text('Leaderboard'),
+                _gap,
+                _hideUntilReady(
+                  ready: gamesServicesController.signedIn,
+                  child: ElevatedButton(
+                    onPressed: () => gamesServicesController.showLeaderboard(),
+                    child: const Text('Leaderboard'),
+                  ),
                 ),
-              ),
+                _gap,
+              ],
+
               _gap,
+              // Padding(
+              //   padding: const EdgeInsets.only(top: 32),
+              //   child: ValueListenableBuilder<bool>(
+              //     valueListenable: settingsController.muted,
+              //     builder: (context, muted, child) {
+              //       return IconButton(
+              //         onPressed: () => settingsController.toggleMuted(),
+              //         icon: Icon(muted ? Icons.volume_off : Icons.volume_up),
+              //       );
+              //     },
+              //   ),
+              // ),
+              // _gap,
+              // const Text('Musica'),
+              // _gap,
             ],
-            ElevatedButton(
-              onPressed: () => GoRouter.of(context).go('/settings'),
-              child: const Text('Settings'),
-            ),
-            _gap,
-            Padding(
-              padding: const EdgeInsets.only(top: 32),
-              child: ValueListenableBuilder<bool>(
-                valueListenable: settingsController.muted,
-                builder: (context, muted, child) {
-                  return IconButton(
-                    onPressed: () => settingsController.toggleMuted(),
-                    icon: Icon(muted ? Icons.volume_off : Icons.volume_up),
-                  );
-                },
-              ),
-            ),
-            _gap,
-            const Text('Music by Mr Smith'),
-            _gap,
-          ],
+          ),
         ),
       ),
     );
@@ -119,5 +181,6 @@ class MainMenuScreen extends StatelessWidget {
     );
   }
 
-  static const _gap = SizedBox(height: 10);
+  static const _gap = SizedBox(height: 30);
+  static const _gap1 = SizedBox(height: 10);
 }
