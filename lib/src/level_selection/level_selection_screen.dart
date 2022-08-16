@@ -26,7 +26,7 @@ class LevelSelectionScreen extends StatelessWidget {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: ExactAssetImage('assets/images/fondo20.png'),
+            image: ExactAssetImage('assets/images/nature.jpg'),
             fit: BoxFit.cover,
           ),
         ),

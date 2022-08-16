@@ -16,26 +16,26 @@ import '../style/responsive_screen.dart';
 class MainMenuScreen extends StatelessWidget {
   const MainMenuScreen({super.key});
 
-  @override
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
     final gamesServicesController = context.watch<GamesServicesController?>();
     final settingsController = context.watch<SettingsController>();
     final audioController = context.watch<AudioController>();
-    // double width = MediaQuery.of(context).size.width;
-    // double height = MediaQuery.of(context).size.height;
-    // double sizerecovide = 10;
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    double isPortrait = 0;
+    double isPortrait2 = 0;
+    var _gap = SizedBox(height: 150);
 
-    // if (width <= height) {
-    //   // ignore: unused_local_variable
-    //   double sizerecovida = 100;
-    // } else {
-    //   // ignore: unused_local_variable
-    //   double sizerecovida = 140;
-    // }
-
+    if (screenWidth >= screenHeight) {
+      _gap = SizedBox(height: 0);
+      isPortrait = 80;
+      isPortrait2 = 110;
+    } else {
+      isPortrait = 150;
+      isPortrait2 = 200;
+    }
     return Scaffold(
-      //backgroundColor: palette.backgroundMain,
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -47,17 +47,6 @@ class MainMenuScreen extends StatelessWidget {
           mainAreaProminence: 0.45,
           topMessageArea: Column(
             children: [
-              // GestureDetector(
-              //     onTap: () {
-              //       audioController.playSfx(SfxType.buttonTap);
-              //       GoRouter.of(context).go('/settings');
-              //     },
-              //     child: Align(
-              //         alignment: Alignment.center,
-              //         child: Image(
-              //           height: 140,
-              //           image: AssetImage('assets/images/logo.gif'),
-              //         ))),
               GestureDetector(
                   onTap: () {
                     audioController.playSfx(SfxType.buttonTap);
@@ -69,34 +58,26 @@ class MainMenuScreen extends StatelessWidget {
                         height: 40,
                         image: AssetImage('assets/images/configuracion.png'),
                       ))),
+              _gap,
+              GestureDetector(
+                  child: Align(
+                      alignment: Alignment.center,
+                      child: Image(
+                        height: isPortrait,
+                        image: AssetImage('assets/images/recovida.png'),
+                      ))),
+              GestureDetector(
+                  child: Align(
+                      alignment: Alignment.center,
+                      child: Image(
+                        height: isPortrait2,
+                        image: AssetImage('assets/images/logo.gif'),
+                      ))),
             ],
           ),
-          squarishMainArea: Center(
-            child: Column(
-              children: [
-                GestureDetector(
-                    onTap: () {
-                      audioController.playSfx(SfxType.buttonTap);
-                      GoRouter.of(context).go('/settings');
-                    },
-                    child: Align(
-                        alignment: Alignment.center,
-                        child: Image(
-                          height: 140,
-                          image: AssetImage('assets/images/logo.gif'),
-                        ))),
-                GestureDetector(
-                    child: Align(
-                        alignment: Alignment.center,
-                        child: Image(
-                          height: 100,
-                          image: AssetImage('assets/images/recovida.png'),
-                        ))),
-              ],
-            ),
-          ),
-          rectangularMenuArea: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
+          squarishMainArea: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               GestureDetector(
                   onTap: () {
@@ -108,7 +89,11 @@ class MainMenuScreen extends StatelessWidget {
                     height: 50,
                     image: AssetImage('assets/images/boton.png'),
                   )),
-              _gap,
+            ],
+          ),
+          rectangularMenuArea: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
               if (gamesServicesController != null) ...[
                 _hideUntilReady(
                   ready: gamesServicesController.signedIn,
@@ -117,7 +102,6 @@ class MainMenuScreen extends StatelessWidget {
                     child: const Text('Achievements'),
                   ),
                 ),
-                _gap,
                 _hideUntilReady(
                   ready: gamesServicesController.signedIn,
                   child: ElevatedButton(
@@ -125,20 +109,9 @@ class MainMenuScreen extends StatelessWidget {
                     child: const Text('Leaderboard'),
                   ),
                 ),
-                _gap,
               ],
-              // GestureDetector(
-              //     onTap: () {
-              //       audioController.playSfx(SfxType.buttonTap);
-              //       GoRouter.of(context).go('/settings');
-              //     },
-              //     child: Align(
-              //         //alignment: Alignment.centerRight,
-              //         child: Image(
-              //       height: 40,
-              //       image: AssetImage('assets/images/configuracion.png'),
-              //     ))),
-              // _gap,
+              const Text('Ayudanos a ayudarte'),
+
               // Padding(
               //   padding: const EdgeInsets.only(top: 32),
               //   child: ValueListenableBuilder<bool>(
@@ -183,6 +156,4 @@ class MainMenuScreen extends StatelessWidget {
       },
     );
   }
-
-  static const _gap = SizedBox(height: 10);
 }
