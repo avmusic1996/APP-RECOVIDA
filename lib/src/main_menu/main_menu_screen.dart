@@ -16,15 +16,21 @@ import '../style/responsive_screen.dart';
 class MainMenuScreen extends StatelessWidget {
   const MainMenuScreen({super.key});
 
-  @override
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
     final gamesServicesController = context.watch<GamesServicesController?>();
     final settingsController = context.watch<SettingsController>();
     final audioController = context.watch<AudioController>();
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    double isPortrait = 0;
 
+    if (screenWidth >= screenHeight) {
+      isPortrait = 80;
+    } else {
+      isPortrait = 180;
+    }
     return Scaffold(
-      //backgroundColor: palette.backgroundMain,
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -75,10 +81,10 @@ class MainMenuScreen extends StatelessWidget {
                           image: AssetImage('assets/images/logo.gif'),
                         ))),
                 GestureDetector(
-                    child: const Align(
+                    child: Align(
                         alignment: Alignment.center,
                         child: Image(
-                          height: 160,
+                          height: isPortrait,
                           image: AssetImage('assets/images/recovida.png'),
                         ))),
               ],
@@ -116,17 +122,19 @@ class MainMenuScreen extends StatelessWidget {
                 ),
                 _gap,
               ],
-              GestureDetector(
-                  onTap: () {
-                    audioController.playSfx(SfxType.buttonTap);
-                    GoRouter.of(context).go('/settings');
-                  },
-                  child: Align(
-                      //alignment: Alignment.centerRight,
-                      child: Image(
-                    height: 40,
-                    image: AssetImage('assets/images/configuracion.png'),
-                  ))),
+              // GestureDetector(
+              //     onTap: () {
+              //       audioController.playSfx(SfxType.buttonTap);
+              //       GoRouter.of(context).go('/settings');
+              //     },
+              //     child: Align(
+              //         //alignment: Alignment.centerRight,
+              //         child: Image(
+              //       height: 40,
+              //       image: AssetImage('assets/images/configuracion.png'),
+              //     ))),
+              _gap,
+              const Text('Ayudanos a ayudarte'),
               _gap,
               // Padding(
               //   padding: const EdgeInsets.only(top: 32),
