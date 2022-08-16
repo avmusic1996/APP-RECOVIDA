@@ -25,12 +25,12 @@ class MainMenuScreen extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
     double isPortrait = 0;
     double isPortrait2 = 0;
-    var _gap = SizedBox(height: 150);
+    var _gap = SizedBox(height: 100);
 
     if (screenWidth >= screenHeight) {
       _gap = SizedBox(height: 0);
-      isPortrait = 80;
-      isPortrait2 = 110;
+      isPortrait = screenHeight * 0.20;
+      isPortrait2 = 130;
     } else {
       isPortrait = 150;
       isPortrait2 = 200;
@@ -47,17 +47,17 @@ class MainMenuScreen extends StatelessWidget {
           mainAreaProminence: 0.45,
           topMessageArea: Column(
             children: [
-              GestureDetector(
-                  onTap: () {
-                    audioController.playSfx(SfxType.buttonTap);
-                    GoRouter.of(context).go('/settings');
-                  },
-                  child: Align(
-                      alignment: Alignment.centerRight,
-                      child: Image(
-                        height: 40,
-                        image: AssetImage('assets/images/configuracion.png'),
-                      ))),
+              // GestureDetector(
+              //     onTap: () {
+              //       audioController.playSfx(SfxType.buttonTap);
+              //       GoRouter.of(context).go('/settings');
+              //     },
+              //     child: Align(
+              //         alignment: Alignment.centerRight,
+              //         child: Image(
+              //           height: 40,
+              //           image: AssetImage('assets/images/configuracion.png'),
+              //         ))),
               _gap,
               GestureDetector(
                   child: Align(
@@ -86,8 +86,8 @@ class MainMenuScreen extends StatelessWidget {
                     GoRouter.of(context).go('/play');
                   },
                   child: Image(
-                    height: 50,
-                    image: AssetImage('assets/images/boton.png'),
+                    height: 70,
+                    image: AssetImage('assets/images/star.png'),
                   )),
             ],
           ),
