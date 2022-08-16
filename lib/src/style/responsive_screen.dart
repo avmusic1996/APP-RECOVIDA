@@ -38,11 +38,11 @@ class ResponsiveScreen extends StatelessWidget {
         // This widget wants to fill the whole screen.
         final size = constraints.biggest;
         final padding = EdgeInsets.all(size.shortestSide / 30);
-
+//double sizerecovida = 10;
         if (size.height >= size.width) {
           // "Portrait" / "mobile" mode.
           return Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               SafeArea(
                 bottom: false,
@@ -68,14 +68,20 @@ class ResponsiveScreen extends StatelessWidget {
                   child: rectangularMenuArea,
                 ),
               ),
+              // GestureDetector(
+              //     child: Center(
+              //         child: Image(
+              //   height: 140,
+              //   image: AssetImage('assets/images/recovida.gif'),
+              // ))),
             ],
           );
         } else {
           // "Landscape" / "tablet" mode.
+          //double sizerecovida = 100;
           final isLarge = size.width > 900;
-
           return Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               SafeArea(
                 bottom: false,
@@ -101,6 +107,12 @@ class ResponsiveScreen extends StatelessWidget {
                   child: rectangularMenuArea,
                 ),
               ),
+              // GestureDetector(
+              //     child: Center(
+              //         child: Image(
+              //   height: 100,
+              //   image: AssetImage('assets/images/recovida.gif'),
+              // ))),
             ],
           );
           // Row(

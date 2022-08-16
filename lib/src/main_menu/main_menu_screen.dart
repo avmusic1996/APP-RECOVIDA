@@ -22,6 +22,17 @@ class MainMenuScreen extends StatelessWidget {
     final gamesServicesController = context.watch<GamesServicesController?>();
     final settingsController = context.watch<SettingsController>();
     final audioController = context.watch<AudioController>();
+    // double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    // double sizerecovide = 10;
+
+    // if (width <= height) {
+    //   // ignore: unused_local_variable
+    //   double sizerecovida = 100;
+    // } else {
+    //   // ignore: unused_local_variable
+    //   double sizerecovida = 140;
+    // }
 
     return Scaffold(
       //backgroundColor: palette.backgroundMain,
@@ -75,10 +86,10 @@ class MainMenuScreen extends StatelessWidget {
                           image: AssetImage('assets/images/logo.gif'),
                         ))),
                 GestureDetector(
-                    child: const Align(
+                    child: Align(
                         alignment: Alignment.center,
                         child: Image(
-                          height: 160,
+                          height: 100,
                           image: AssetImage('assets/images/recovida.png'),
                         ))),
               ],
@@ -116,18 +127,18 @@ class MainMenuScreen extends StatelessWidget {
                 ),
                 _gap,
               ],
-              GestureDetector(
-                  onTap: () {
-                    audioController.playSfx(SfxType.buttonTap);
-                    GoRouter.of(context).go('/settings');
-                  },
-                  child: Align(
-                      //alignment: Alignment.centerRight,
-                      child: Image(
-                    height: 40,
-                    image: AssetImage('assets/images/configuracion.png'),
-                  ))),
-              _gap,
+              // GestureDetector(
+              //     onTap: () {
+              //       audioController.playSfx(SfxType.buttonTap);
+              //       GoRouter.of(context).go('/settings');
+              //     },
+              //     child: Align(
+              //         //alignment: Alignment.centerRight,
+              //         child: Image(
+              //       height: 40,
+              //       image: AssetImage('assets/images/configuracion.png'),
+              //     ))),
+              // _gap,
               // Padding(
               //   padding: const EdgeInsets.only(top: 32),
               //   child: ValueListenableBuilder<bool>(
