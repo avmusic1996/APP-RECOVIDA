@@ -29,7 +29,8 @@ class MainMenuScreen extends StatelessWidget {
 
     if (screenWidth >= screenHeight) {
       _gap = SizedBox(height: 0);
-      isPortrait = 80;
+      isPortrait = screenHeight * 0.24;
+
       isPortrait2 = 110;
     } else {
       isPortrait = 150;
