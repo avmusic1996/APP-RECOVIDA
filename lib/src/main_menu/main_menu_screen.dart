@@ -24,19 +24,29 @@ class MainMenuScreen extends StatelessWidget {
     final audioController = context.watch<AudioController>();
 
     return Scaffold(
-      backgroundColor: palette.backgroundMain,
-      body: ResponsiveScreen(
-        mainAreaProminence: 0.85,
-        squarishMainArea: Center(
-          child: Transform.rotate(
-            angle: -0.15,
-            child: const Text(
-              'RECOVIDA',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: 'Permanent Marker',
-                fontSize: 55,
-                height: 1,
+    
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("images/background.jpg"),
+            fit: BoxFit.cover,
+            
+          ),
+        ),
+        child: ResponsiveScreen(
+           
+          mainAreaProminence: 0.45,
+          squarishMainArea: Center(
+            child: Transform.rotate(
+              angle: -0.1,
+              child: const Text(
+                'RECOVIDA',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'Permanent Marker',
+                  fontSize: 55,
+                  height: 1,
+                ),
               ),
             ),
           ),
