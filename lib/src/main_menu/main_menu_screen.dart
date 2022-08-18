@@ -16,55 +16,84 @@ import '../style/responsive_screen.dart';
 class MainMenuScreen extends StatelessWidget {
   const MainMenuScreen({super.key});
 
-  @override
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
     final gamesServicesController = context.watch<GamesServicesController?>();
     final settingsController = context.watch<SettingsController>();
     final audioController = context.watch<AudioController>();
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    double isPortrait = 0;
+    double isPortrait2 = 0;
+    var _gap = SizedBox(height: 100);
 
+    if (screenWidth >= screenHeight) {
+      _gap = SizedBox(height: 0);
+      isPortrait = screenHeight * 0.20;
+      isPortrait2 = 130;
+    } else {
+      isPortrait = 150;
+      isPortrait2 = 200;
+    }
     return Scaffold(
-    
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("images/background.jpg"),
+            image: ExactAssetImage('assets/images/fondo2.png'),
             fit: BoxFit.cover,
-            
           ),
         ),
         child: ResponsiveScreen(
-           
           mainAreaProminence: 0.45,
-          squarishMainArea: Center(
-            child: Transform.rotate(
-              angle: -0.1,
-              child: const Text(
-                'RECOVIDA',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontFamily: 'Permanent Marker',
-                  fontSize: 55,
-                  height: 1,
-                ),
-              ),
-            ),
+          topMessageArea: Column(
+            children: [
+              // GestureDetector(
+              //     onTap: () {
+              //       audioController.playSfx(SfxType.buttonTap);
+              //       GoRouter.of(context).go('/settings');
+              //     },
+              //     child: Align(
+              //         alignment: Alignment.centerRight,
+              //         child: Image(
+              //           height: 40,
+              //           image: AssetImage('assets/images/configuracion.png'),
+              //         ))),
+              _gap,
+              GestureDetector(
+                  child: Align(
+                      alignment: Alignment.center,
+                      child: Image(
+                        height: isPortrait,
+                        image: AssetImage('assets/images/recovida.png'),
+                      ))),
+              GestureDetector(
+                  child: Align(
+                      alignment: Alignment.center,
+                      child: Image(
+                        height: isPortrait2,
+                        image: AssetImage('assets/images/logo.gif'),
+                      ))),
+            ],
+          ),
+          squarishMainArea: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              GestureDetector(
+                  onTap: () {
+                    audioController.playSfx(SfxType.buttonTap);
+
+                    GoRouter.of(context).go('/play');
+                  },
+                  child: Image(
+                    height: 70,
+                    image: AssetImage('assets/images/star.png'),
+                  )),
+            ],
           ),
           rectangularMenuArea: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-
-                GestureDetector(
-        onTap: () {
-                  audioController.playSfx(SfxType.buttonTap);
-                  GoRouter.of(context).go('/play');
-                },
-                   child: Image.asset('images/the_image.png')
-                ),
-
-
-             
-              _gap,
               if (gamesServicesController != null) ...[
                 _hideUntilReady(
                   ready: gamesServicesController.signedIn,
@@ -73,7 +102,6 @@ class MainMenuScreen extends StatelessWidget {
                     child: const Text('Achievements'),
                   ),
                 ),
-                _gap,
                 _hideUntilReady(
                   ready: gamesServicesController.signedIn,
                   child: ElevatedButton(
@@ -81,28 +109,24 @@ class MainMenuScreen extends StatelessWidget {
                     child: const Text('Leaderboard'),
                   ),
                 ),
-                _gap,
               ],
-              ElevatedButton(
-                onPressed: () => GoRouter.of(context).go('/settings'),
-                child: const Text('Ajustes'),
-              ),
-              _gap,
-              Padding(
-                padding: const EdgeInsets.only(top: 32),
-                child: ValueListenableBuilder<bool>(
-                  valueListenable: settingsController.muted,
-                  builder: (context, muted, child) {
-                    return IconButton(
-                      onPressed: () => settingsController.toggleMuted(),
-                      icon: Icon(muted ? Icons.volume_off : Icons.volume_up),
-                    );
-                  },
-                ),
-              ),
-              _gap,
-              const Text('Music by Mr Smith'),
-              _gap,
+              const Text('Ayudanos a ayudarte'),
+
+              // Padding(
+              //   padding: const EdgeInsets.only(top: 32),
+              //   child: ValueListenableBuilder<bool>(
+              //     valueListenable: settingsController.muted,
+              //     builder: (context, muted, child) {
+              //       return IconButton(
+              //         onPressed: () => settingsController.toggleMuted(),
+              //         icon: Icon(muted ? Icons.volume_off : Icons.volume_up),
+              //       );
+              //     },
+              //   ),
+              // ),
+              // _gap,
+              // const Text('Music by Mr Smith'),
+              // _gap,
             ],
           ),
         ),
@@ -135,3 +159,5 @@ class MainMenuScreen extends StatelessWidget {
 
   static const _gap = SizedBox(height: 10);
 }
+
+

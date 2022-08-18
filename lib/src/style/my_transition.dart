@@ -27,7 +27,7 @@ CustomTransitionPage<T> buildMyTransition<T>({
     name: name,
     arguments: arguments,
     restorationId: restorationId,
-    transitionDuration: const Duration(milliseconds: 700),
+    transitionDuration: const Duration(milliseconds: 001),
   );
 }
 

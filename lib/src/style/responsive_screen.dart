@@ -42,7 +42,7 @@ class ResponsiveScreen extends StatelessWidget {
         if (size.height >= size.width) {
           // "Portrait" / "mobile" mode.
           return Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SafeArea(
                 bottom: false,
@@ -74,50 +74,79 @@ class ResponsiveScreen extends StatelessWidget {
           // "Landscape" / "tablet" mode.
           final isLarge = size.width > 900;
 
-          return Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              SafeArea(
+                bottom: false,
+                child: Padding(
+                  padding: padding,
+                  child: topMessageArea,
+                ),
+              ),
               Expanded(
-                flex: isLarge ? 7 : 5,
+                flex: (mainAreaProminence * 100).round(),
                 child: SafeArea(
-                  right: false,
-                  maintainBottomViewPadding: true,
+                  top: false,
+                  bottom: false,
                   minimum: padding,
                   child: squarishMainArea,
                 ),
               ),
-              Expanded(
-                flex: 3,
-                child: Column(
-                  children: [
-                    SafeArea(
-                      bottom: false,
-                      left: false,
-                      maintainBottomViewPadding: true,
-                      child: Padding(
-                        padding: padding,
-                        child: topMessageArea,
-                      ),
-                    ),
-                    Expanded(
-                      child: SafeArea(
-                        top: false,
-                        left: false,
-                        maintainBottomViewPadding: true,
-                        child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Padding(
-                            padding: padding,
-                            child: rectangularMenuArea,
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
+              SafeArea(
+                top: false,
+                maintainBottomViewPadding: true,
+                child: Padding(
+                  padding: padding,
+                  child: rectangularMenuArea,
                 ),
               ),
             ],
           );
+          // Row(
+          //   crossAxisAlignment: CrossAxisAlignment.stretch,
+          //   children: [
+          //     Expanded(
+          //       flex: isLarge ? 7 : 5,
+          //       child: SafeArea(
+          //         right: false,
+          //         maintainBottomViewPadding: true,
+          //         minimum: padding,
+          //         child: squarishMainArea,
+          //       ),
+          //     ),
+          //     Expanded(
+          //       flex: 3,
+          //       child: Column(
+          //         children: [
+          //           SafeArea(
+          //             bottom: false,
+          //             left: false,
+          //             maintainBottomViewPadding: true,
+          //             child: Padding(
+          //               padding: padding,
+          //               child: topMessageArea,
+          //             ),
+          //           ),
+          //           Expanded(
+          //             child: SafeArea(
+          //               top: false,
+          //               left: false,
+          //               maintainBottomViewPadding: true,
+          //               child: Align(
+          //                 alignment: Alignment.bottomCenter,
+          //                 child: Padding(
+          //                   padding: padding,
+          //                   child: rectangularMenuArea,
+          //                 ),
+          //               ),
+          //             ),
+          //           )
+          //         ],
+          //       ),
+          //     ),
+          //   ],
+          // );
         }
       },
     );

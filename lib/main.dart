@@ -10,10 +10,12 @@
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
+import 'package:flame/flame.dart';
 
 import 'src/ads/ads_controller.dart';
 import 'src/app_lifecycle/app_lifecycle.dart';
@@ -37,6 +39,7 @@ import 'src/style/my_transition.dart';
 import 'src/style/palette.dart';
 import 'src/style/snack_bar.dart';
 import 'src/win_game/win_game_screen.dart';
+
 
 Future<void> main() async {
   // To enable Firebase Crashlytics, uncomment the following lines and
@@ -73,7 +76,6 @@ void guardedMain() {
         '${record.loggerName}: '
         '${record.message}');
   });
-
   WidgetsFlutterBinding.ensureInitialized();
 
   _log.info('Going full screen');
@@ -110,15 +112,19 @@ void guardedMain() {
   //   inAppPurchaseController.restorePurchases();
   // }
 
-  runApp(
-    MyApp(
-      settingsPersistence: LocalStorageSettingsPersistence(),
-      playerProgressPersistence: LocalStoragePlayerProgressPersistence(),
-      inAppPurchaseController: inAppPurchaseController,
-      adsController: adsController,
-      gamesServicesController: gamesServicesController,
-    ),
-  );
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+    DeviceOrientation.landscapeLeft,
+    DeviceOrientation.landscapeRight,
+  ]).then((value) => runApp(MyApp(
+        settingsPersistence: LocalStorageSettingsPersistence(),
+        playerProgressPersistence: LocalStoragePlayerProgressPersistence(),
+        inAppPurchaseController: inAppPurchaseController,
+        adsController: adsController,
+        gamesServicesController: gamesServicesController,
+      )));
 }
 
 Logger _log = Logger('main.dart');
@@ -244,6 +250,7 @@ class MyApp extends StatelessWidget {
           final palette = context.watch<Palette>();
 
           return MaterialApp.router(
+            debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
             theme: ThemeData.from(
               colorScheme: ColorScheme.fromSeed(
