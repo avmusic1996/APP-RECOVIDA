@@ -78,6 +78,8 @@ class MainMenuScreen extends StatelessWidget {
                         height: isPortrait2,
                         image: AssetImage('assets/images/logo.gif'),
                       ))),
+
+              
             ],
           ),
           squarishMainArea: Row(
@@ -94,6 +96,7 @@ class MainMenuScreen extends StatelessWidget {
                     height: 70,
                     image: AssetImage('assets/images/star.png'),
                   )),
+              
             ],
           ),
           rectangularMenuArea: Column(
