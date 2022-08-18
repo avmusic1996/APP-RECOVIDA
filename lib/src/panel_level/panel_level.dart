@@ -21,7 +21,6 @@ class LevelSelection extends StatelessWidget {
     final palette = context.watch<Palette>();
     final playerProgress = context.watch<PlayerProgress>();
     final audioController = context.watch<AudioController>();
-    
 
     return Scaffold(
       body: Container(
@@ -34,25 +33,6 @@ class LevelSelection extends StatelessWidget {
         child: ResponsiveScreen(
           topMessageArea: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GestureDetector(
-                  //alignment: Alignment.bottomCenter,
-                  child: Image(
-                height: 40,
-                image: AssetImage('assets/images/selec.png'),
-              )),
-              GestureDetector(
-                  // onTap: () {
-                  //   audioController.playSfx(SfxType.buttonTap);
-                  //   GoRouter.of(context).go('/settings');
-                  // },
-                  child: Center(
-                      //alignment: Alignment.bottomCenter,
-                      child: Image(
-                height: 40,
-                image: AssetImage('assets/images/puntaje.png'),
-              ))),
-            ],
           ),
           squarishMainArea: Column(
             children: [
@@ -65,11 +45,11 @@ class LevelSelection extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.all(09),
                 child: Text(
-                  'Selecciona el nivel',
+                  'Selecciona la categoria',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                      fontFamily: 'arial',
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      fontFamily: 'Britannic Bold',
                       fontSize: 30),
                 ),
               ),
@@ -112,32 +92,11 @@ class LevelSelection extends StatelessWidget {
             children: [
               GestureDetector(
                   onTap: () {
-                    GoRouter.of(context).pop();
+                    GoRouter.of(context).go('/play');
                   },
                   child: Image(
                     height: 50,
                     image: AssetImage('assets/images/atras.png'),
-                  )),
-              GestureDetector(
-                  onTap: () {
-                    audioController.playSfx(SfxType.buttonTap);
-
-                    GoRouter.of(context).go('/');
-                  },
-                  child: Image(
-                    height: 50,
-                    image: AssetImage('assets/images/home.png'),
-                  )),
-              GestureDetector(
-                  onTap: () {
-                    audioController.playSfx(SfxType.buttonTap);
-
-                    GoRouter.of(context).push('/settings');
-                  },
-                  //alignment: Alignment.bottomCenter,
-                  child: Image(
-                    height: 50,
-                    image: AssetImage('assets/images/siguiente.png'),
                   )),
             ],
           ),

@@ -51,11 +51,16 @@ class LevelSelectionScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               GestureDetector(
+                  onTap: () {
+                    audioController.playSfx(SfxType.buttonTap);
+
+                    GoRouter.of(context).push('/settings');
+                  },
                   //alignment: Alignment.bottomCenter,
                   child: Image(
-                height: 40,
-                image: AssetImage('assets/images/selec.png'),
-              )),
+                    height: 40,
+                    image: AssetImage('assets/images/configuracion.png'),
+                  )),
               GestureDetector(
                   child: Center(
                       //alignment: Alignment.bottomCenter,
