@@ -70,7 +70,8 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
                       child: InkResponse(
                         onTap: () => GoRouter.of(context).push('/settings'),
                         child: Image.asset(
-                          'assets/images/settings.png',
+                          height: 50,
+                          'assets/images/configuracion.png',
                           semanticLabel: 'Settings',
                         ),
                       ),
@@ -89,15 +90,33 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
                       ),
                     ),
                     const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          onPressed: () => GoRouter.of(context).pop(),
-                          child: const Text('Back'),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(51.0),
+                          child: GestureDetector(
+                              onTap: () {
+                                GoRouter.of(context).push('/play');
+                              },
+                              child: Image(
+                                height: 50,
+                                image: AssetImage('assets/images/atras.png'),
+                              )),
                         ),
-                      ),
+                        Padding(
+                          padding: const EdgeInsets.all(51.0),
+                          child: GestureDetector(
+                              onTap: () {
+                                GoRouter.of(context).push('/play/session/1');
+                              },
+                              child: Image(
+                                height: 50,
+                                image:
+                                    AssetImage('assets/images/siguiente.png'),
+                              )),
+                        ),
+                      ],
                     ),
                   ],
                 ),

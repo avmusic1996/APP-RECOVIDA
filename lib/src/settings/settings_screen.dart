@@ -16,96 +16,124 @@ import 'settings.dart';
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
-  static const _gap = SizedBox(height: 60);
-
   @override
   Widget build(BuildContext context) {
     final settings = context.watch<SettingsController>();
     final palette = context.watch<Palette>();
 
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    var _gap = SizedBox(height: 50);
+
+    if (screenWidth >= screenHeight) {
+      _gap = SizedBox(height: 0);
+    } else {
+      var _gap = SizedBox(height: 60);
+    }
+
     return Scaffold(
-      backgroundColor: palette.backgroundSettings,
-      body: ResponsiveScreen(
-        squarishMainArea: ListView(
-          children: [
-            _gap,
-            const Text(
-              'Settings',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: 'Permanent Marker',
-                fontSize: 55,
-                height: 1,
-              ),
-            ),
-            _gap,
-            const _NameChangeLine(
-              'Name',
-            ),
-            ValueListenableBuilder<bool>(
-              valueListenable: settings.soundsOn,
-              builder: (context, soundsOn, child) => _SettingsLine(
-                'Sound FX',
-                Icon(soundsOn ? Icons.graphic_eq : Icons.volume_off),
-                onSelected: () => settings.toggleSoundsOn(),
-              ),
-            ),
-            ValueListenableBuilder<bool>(
-              valueListenable: settings.musicOn,
-              builder: (context, musicOn, child) => _SettingsLine(
-                'Music',
-                Icon(musicOn ? Icons.music_note : Icons.music_off),
-                onSelected: () => settings.toggleMusicOn(),
-              ),
-            ),
-            Consumer<InAppPurchaseController?>(
-                builder: (context, inAppPurchase, child) {
-              if (inAppPurchase == null) {
-                // In-app purchases are not supported yet.
-                // Go to lib/main.dart and uncomment the lines that create
-                // the InAppPurchaseController.
-                return const SizedBox.shrink();
-              }
-
-              Widget icon;
-              VoidCallback? callback;
-              if (inAppPurchase.adRemoval.active) {
-                icon = const Icon(Icons.check);
-              } else if (inAppPurchase.adRemoval.pending) {
-                icon = const CircularProgressIndicator();
-              } else {
-                icon = const Icon(Icons.ad_units);
-                callback = () {
-                  inAppPurchase.buy();
-                };
-              }
-              return _SettingsLine(
-                'Remove ads',
-                icon,
-                onSelected: callback,
-              );
-            }),
-            _SettingsLine(
-              'Reset progress',
-              const Icon(Icons.delete),
-              onSelected: () {
-                context.read<PlayerProgress>().reset();
-
-                final messenger = ScaffoldMessenger.of(context);
-                messenger.showSnackBar(
-                  const SnackBar(
-                      content: Text('Player progress has been reset.')),
-                );
-              },
-            ),
-            _gap,
-          ],
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: ExactAssetImage('assets/images/nature2.png'),
+            fit: BoxFit.cover,
+          ),
         ),
-        rectangularMenuArea: ElevatedButton(
-          onPressed: () {
-            GoRouter.of(context).pop();
-          },
-          child: const Text('Back'),
+        child: ResponsiveScreen(
+          squarishMainArea: ListView(
+            children: [
+              _gap,
+              const Text(
+                'Configuracion',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'Permanent Marker',
+                  fontSize: 50,
+                  height: 1,
+                ),
+              ),
+              _gap,
+              const _NameChangeLine(
+                'Name',
+              ),
+              ValueListenableBuilder<bool>(
+                valueListenable: settings.soundsOn,
+                builder: (context, soundsOn, child) => _SettingsLine(
+                  'Sound FX',
+                  Icon(soundsOn ? Icons.graphic_eq : Icons.volume_off),
+                  onSelected: () => settings.toggleSoundsOn(),
+                ),
+              ),
+              ValueListenableBuilder<bool>(
+                valueListenable: settings.musicOn,
+                builder: (context, musicOn, child) => _SettingsLine(
+                  'Music',
+                  Icon(musicOn ? Icons.music_note : Icons.music_off),
+                  onSelected: () => settings.toggleMusicOn(),
+                ),
+              ),
+              Consumer<InAppPurchaseController?>(
+                  builder: (context, inAppPurchase, child) {
+                if (inAppPurchase == null) {
+                  // In-app purchases are not supported yet.
+                  // Go to lib/main.dart and uncomment the lines that create
+                  // the InAppPurchaseController.
+                  return const SizedBox.shrink();
+                }
+
+                Widget icon;
+                VoidCallback? callback;
+                if (inAppPurchase.adRemoval.active) {
+                  icon = const Icon(Icons.check);
+                } else if (inAppPurchase.adRemoval.pending) {
+                  icon = const CircularProgressIndicator();
+                } else {
+                  icon = const Icon(Icons.ad_units);
+                  callback = () {
+                    inAppPurchase.buy();
+                  };
+                }
+                return _SettingsLine(
+                  'Remove ads',
+                  icon,
+                  onSelected: callback,
+                );
+              }),
+              _SettingsLine(
+                'Reset progress',
+                const Icon(Icons.delete),
+                onSelected: () {
+                  context.read<PlayerProgress>().reset();
+
+                  final messenger = ScaffoldMessenger.of(context);
+                  messenger.showSnackBar(
+                    const SnackBar(
+                        content: Text('Player progress has been reset.')),
+                  );
+                },
+              ),
+            ],
+          ),
+
+          rectangularMenuArea: Row(
+            children: [
+              GestureDetector(
+                  onTap: () {
+                    GoRouter.of(context).go('/play');
+                  },
+                  child: Image(
+                    height: 50,
+                    image: AssetImage('assets/images/atras.png'),
+                  )),
+            ],
+          ),
+          // ElevatedButton(
+          //   onPressed: () {
+          //     GoRouter.of(context).pop();
+          //   },
+          //   child: const Text('Back'),
+          // ),
         ),
       ),
     );
