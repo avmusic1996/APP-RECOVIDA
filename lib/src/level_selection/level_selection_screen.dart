@@ -121,7 +121,7 @@ class LevelSelectionScreen extends StatelessWidget {
                   onTap: () {
                     audioController.playSfx(SfxType.buttonTap);
 
-                    GoRouter.of(context).go('/settings');
+                    GoRouter.of(context).go('/');
                   },
                   child: Image(
                     height: 50,
