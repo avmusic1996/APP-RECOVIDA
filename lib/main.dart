@@ -16,6 +16,7 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
+import 'package:flame/flame.dart';
 
 import 'src/ads/ads_controller.dart';
 import 'src/app_lifecycle/app_lifecycle.dart';
@@ -39,6 +40,7 @@ import 'src/style/my_transition.dart';
 import 'src/style/palette.dart';
 import 'src/style/snack_bar.dart';
 import 'src/win_game/win_game_screen.dart';
+
 
 Future<void> main() async {
   // To enable Firebase Crashlytics, uncomment the following lines and
@@ -82,7 +84,7 @@ void guardedMain() {
     SystemUiMode.edgeToEdge,
   );
 
-  // TODO: When ready, uncomment the following lines to enable integrations.
+  // f
   //       Read the README for more info on each integration.
 
   AdsController? adsController;

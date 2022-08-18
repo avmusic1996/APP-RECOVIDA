@@ -21,6 +21,25 @@ class LevelSelectionScreen extends StatelessWidget {
     final palette = context.watch<Palette>();
     final playerProgress = context.watch<PlayerProgress>();
     final audioController = context.watch<AudioController>();
+     final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    double isPortrait = 0;
+    double isPortrait2 = 0;
+    var _gap = SizedBox(height: 100);
+
+    if (screenWidth >= screenHeight) {
+      _gap = SizedBox(height: 0);
+
+      isPortrait = screenHeight * 0.24;
+
+      isPortrait2 = 110;
+
+      isPortrait = screenHeight * 0.20;
+      isPortrait2 = 130;
+    } else {
+      isPortrait = 300;
+      isPortrait2 = 200;
+    }
 
     return Scaffold(
       body: Container(
@@ -73,6 +92,17 @@ class LevelSelectionScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 0),
+              GestureDetector(
+                  onTap: () {
+                    audioController.playSfx(SfxType.buttonTap);
+
+                    GoRouter.of(context).push('/settings');
+                  },
+                  //alignment: Alignment.bottomCenter,
+                  child: Image(
+                    height: isPortrait,
+                    image: AssetImage('assets/images/animationlogo.gif'),
+                  )),
               // Expanded(
               //   child: ListView(
               //     children: [
