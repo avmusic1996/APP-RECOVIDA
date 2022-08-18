@@ -108,7 +108,7 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
                           padding: const EdgeInsets.all(51.0),
                           child: GestureDetector(
                               onTap: () {
-                                GoRouter.of(context).push('/play/session/2');
+                                GoRouter.of(context).push('/play/session/1');
                               },
                               child: Image(
                                 height: 50,

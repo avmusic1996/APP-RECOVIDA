@@ -11,6 +11,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'src/panel_level/panel_level.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:logging/logging.dart';
@@ -142,6 +143,44 @@ class MyApp extends StatelessWidget {
                 pageBuilder: (context, state) => buildMyTransition(
                       child: const LevelSelectionScreen(
                           key: Key('level selection')),
+                      color: context.watch<Palette>().backgroundLevelSelection,
+                    ),
+                routes: [
+                  GoRoute(
+                    path: 'session/:level',
+                    pageBuilder: (context, state) {
+                      final levelNumber = int.parse(state.params['level']!);
+                      final level = gameLevels
+                          .singleWhere((e) => e.number == levelNumber);
+                      return buildMyTransition(
+                        child: PlaySessionScreen(
+                          level,
+                          key: const Key('play session'),
+                        ),
+                        color: context.watch<Palette>().backgroundPlaySession,
+                      );
+                    },
+                  ),
+                  GoRoute(
+                    path: 'won',
+                    pageBuilder: (context, state) {
+                      final map = state.extra! as Map<String, dynamic>;
+                      final score = map['score'] as Score;
+
+                      return buildMyTransition(
+                        child: WinGameScreen(
+                          score: score,
+                          key: const Key('win game'),
+                        ),
+                        color: context.watch<Palette>().backgroundPlaySession,
+                      );
+                    },
+                  )
+                ]),
+            GoRoute(
+                path: 'jugar',
+                pageBuilder: (context, state) => buildMyTransition(
+                      child: const LevelSelection(key: Key('level selection')),
                       color: context.watch<Palette>().backgroundLevelSelection,
                     ),
                 routes: [

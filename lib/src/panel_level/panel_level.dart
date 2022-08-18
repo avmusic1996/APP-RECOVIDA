@@ -11,10 +11,10 @@ import '../audio/sounds.dart';
 import '../player_progress/player_progress.dart';
 import '../style/palette.dart';
 import '../style/responsive_screen.dart';
-import 'levels.dart';
+import '../level_selection/levels.dart';
 
-class LevelSelectionScreen extends StatelessWidget {
-  const LevelSelectionScreen({super.key});
+class LevelSelection extends StatelessWidget {
+  const LevelSelection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class LevelSelectionScreen extends StatelessWidget {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: ExactAssetImage('assets/images/nature.jpg'),
+            image: ExactAssetImage('assets/images/nature1.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -64,7 +64,7 @@ class LevelSelectionScreen extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.all(09),
                 child: Text(
-                  'Bienvenido',
+                  'Selecciona el nivel',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
@@ -73,37 +73,37 @@ class LevelSelectionScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 0),
-              // Expanded(
-              //   child: ListView(
-              //     children: [
-              //       for (final level in gameLevels)
-              //         ListTile(
-              //           //style: TextStyle(),
-              //           enabled: playerProgress.highestLevelReached >=
-              //               level.number - 1,
-              //           onTap: () {
-              //             final audioController =
-              //                 context.read<AudioController>();
-              //             audioController.playSfx(SfxType.buttonTap);
+              Expanded(
+                child: ListView(
+                  children: [
+                    for (final level in gameLevels)
+                      ListTile(
+                        //style: TextStyle(),
+                        enabled: playerProgress.highestLevelReached >=
+                            level.number - 1,
+                        onTap: () {
+                          final audioController =
+                              context.read<AudioController>();
+                          audioController.playSfx(SfxType.buttonTap);
 
-              //             GoRouter.of(context)
-              //                 .go('/play/session/${level.number}');
-              //           },
-              //           leading: Text(level.number.toString()),
-              //           title: Text('Level #${level.number}'),
-              //           textColor: Colors.black,
-              //         )
-              //     ],
-              //   ),
-              // ),
-              GestureDetector(
-                  onTap: () {
-                    GoRouter.of(context).go('/jugar');
-                  },
-                  child: Image(
-                    height: 50,
-                    image: AssetImage('assets/images/jugar.png'),
-                  )),
+                          GoRouter.of(context)
+                              .go('/play/session/${level.number}');
+                        },
+                        leading: Text(level.number.toString()),
+                        title: Text('Level #${level.number}'),
+                        textColor: Colors.black,
+                      )
+                  ],
+                ),
+              ),
+              // GestureDetector(
+              //     onTap: () {
+              //       GoRouter.of(context).go('/select/level');
+              //     },
+              //     child: Image(
+              //       height: 50,
+              //       image: AssetImage('assets/images/jugar.png'),
+              //     )),
             ],
           ),
           rectangularMenuArea: Row(
@@ -121,7 +121,7 @@ class LevelSelectionScreen extends StatelessWidget {
                   onTap: () {
                     audioController.playSfx(SfxType.buttonTap);
 
-                    GoRouter.of(context).go('/settings');
+                    GoRouter.of(context).go('/');
                   },
                   child: Image(
                     height: 50,
