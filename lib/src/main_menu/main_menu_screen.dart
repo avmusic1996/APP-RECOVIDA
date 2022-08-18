@@ -29,6 +29,11 @@ class MainMenuScreen extends StatelessWidget {
 
     if (screenWidth >= screenHeight) {
       _gap = SizedBox(height: 0);
+
+      isPortrait = screenHeight * 0.24;
+
+      isPortrait2 = 110;
+
       isPortrait = screenHeight * 0.20;
       isPortrait2 = 130;
     } else {
@@ -73,6 +78,8 @@ class MainMenuScreen extends StatelessWidget {
                         height: isPortrait2,
                         image: AssetImage('assets/images/logo.gif'),
                       ))),
+
+              
             ],
           ),
           squarishMainArea: Row(
@@ -89,6 +96,7 @@ class MainMenuScreen extends StatelessWidget {
                     height: 70,
                     image: AssetImage('assets/images/star.png'),
                   )),
+              
             ],
           ),
           rectangularMenuArea: Column(
@@ -156,4 +164,8 @@ class MainMenuScreen extends StatelessWidget {
       },
     );
   }
+
+  static const _gap = SizedBox(height: 10);
 }
+
+

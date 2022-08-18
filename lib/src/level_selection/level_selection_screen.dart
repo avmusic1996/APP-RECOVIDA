@@ -21,6 +21,25 @@ class LevelSelectionScreen extends StatelessWidget {
     final palette = context.watch<Palette>();
     final playerProgress = context.watch<PlayerProgress>();
     final audioController = context.watch<AudioController>();
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    double isPortrait = 0;
+    double isPortrait2 = 0;
+    var _gap = SizedBox(height: 100);
+
+    if (screenWidth >= screenHeight) {
+      _gap = SizedBox(height: 0);
+
+      isPortrait = screenHeight * 0.24;
+
+      isPortrait2 = 110;
+
+      isPortrait = screenHeight * 0.20;
+      isPortrait2 = 130;
+    } else {
+      isPortrait = screenHeight * 0.4;
+      isPortrait2 = 200;
+    }
 
     return Scaffold(
       body: Container(
@@ -62,9 +81,9 @@ class LevelSelectionScreen extends StatelessWidget {
               //   image: AssetImage('assets/images/container.png'),
               // )),
               const Padding(
-                padding: EdgeInsets.all(09),
+                padding: EdgeInsets.all(5.3),
                 child: Text(
-                  'Selecciona el nivel',
+                  'Bienvenido',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
@@ -73,32 +92,43 @@ class LevelSelectionScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 0),
-              Expanded(
-                child: ListView(
-                  children: [
-                    for (final level in gameLevels)
-                      ListTile(
-                        //style: TextStyle(),
-                        enabled: playerProgress.highestLevelReached >=
-                            level.number - 1,
-                        onTap: () {
-                          final audioController =
-                              context.read<AudioController>();
-                          audioController.playSfx(SfxType.buttonTap);
+              GestureDetector(
+                  // onTap: () {
+                  //   audioController.playSfx(SfxType.buttonTap);
+                  //   GoRouter.of(context).go('/settings');
+                  // },
+                  child: Center(
+                      //alignment: Align.ment.bottomCenter,
+                      child: Image(
+                height: isPortrait,
+                image: AssetImage('assets/images/animationlogo.gif'),
+              ))),
+              // Expanded(
+              //   child: ListView(
+              //     children: [
+              //       for (final level in gameLevels)
+              //         ListTile(
+              //           //style: TextStyle(),
+              //           enabled: playerProgress.highestLevelReached >=
+              //               level.number - 1,
+              //           onTap: () {
+              //             final audioController =
+              //                 context.read<AudioController>();
+              //             audioController.playSfx(SfxType.buttonTap);
 
-                          GoRouter.of(context)
-                              .go('/play/session/${level.number}');
-                        },
-                        leading: Text(level.number.toString()),
-                        title: Text('Level #${level.number}'),
-                        textColor: Colors.black,
-                      )
-                  ],
-                ),
-              ),
+              //             GoRouter.of(context)
+              //                 .go('/play/session/${level.number}');
+              //           },
+              //           leading: Text(level.number.toString()),
+              //           title: Text('Level #${level.number}'),
+              //           textColor: Colors.black,
+              //         )
+              //     ],
+              //   ),
+              // ),
               GestureDetector(
                   onTap: () {
-                    GoRouter.of(context).go('/play/session/1');
+                    GoRouter.of(context).go('/jugar');
                   },
                   child: Image(
                     height: 50,
@@ -106,39 +136,54 @@ class LevelSelectionScreen extends StatelessWidget {
                   )),
             ],
           ),
-          rectangularMenuArea: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GestureDetector(
-                  onTap: () {
-                    GoRouter.of(context).pop();
-                  },
-                  child: Image(
-                    height: 50,
-                    image: AssetImage('assets/images/atras.png'),
-                  )),
-              GestureDetector(
-                  onTap: () {
-                    audioController.playSfx(SfxType.buttonTap);
+          rectangularMenuArea: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              // Even Margin On All Sides
+              margin: EdgeInsets.all(10.0),
+              // Symetric Margin
 
-                    GoRouter.of(context).go('/settings');
-                  },
-                  child: Image(
-                    height: 50,
-                    image: AssetImage('assets/images/home.png'),
-                  )),
-              GestureDetector(
-                  onTap: () {
-                    audioController.playSfx(SfxType.buttonTap);
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: ExactAssetImage('assets/images/nature.jpg'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                      onTap: () {
+                        GoRouter.of(context).pop();
+                      },
+                      child: Image(
+                        height: 50,
+                        image: AssetImage('assets/images/atras.png'),
+                      )),
+                  GestureDetector(
+                      onTap: () {
+                        audioController.playSfx(SfxType.buttonTap);
 
-                    GoRouter.of(context).push('/settings');
-                  },
-                  //alignment: Alignment.bottomCenter,
-                  child: Image(
-                    height: 50,
-                    image: AssetImage('assets/images/siguiente.png'),
-                  )),
-            ],
+                        GoRouter.of(context).go('/');
+                      },
+                      child: Image(
+                        height: 50,
+                        image: AssetImage('assets/images/home.png'),
+                      )),
+                  GestureDetector(
+                      onTap: () {
+                        audioController.playSfx(SfxType.buttonTap);
+
+                        GoRouter.of(context).push('/settings');
+                      },
+                      //alignment: Alignment.bottomCenter,
+                      child: Image(
+                        height: 50,
+                        image: AssetImage('assets/images/siguiente.png'),
+                      )),
+                ],
+              ),
+            ),
           ),
         ),
       ),
