@@ -25,7 +25,7 @@ class MainMenuScreen extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
     double isPortrait = 0;
     double isPortrait2 = 0;
-    var _gap = SizedBox(height: 100);
+    var _gap = SizedBox(height: 90);
 
     if (screenWidth >= screenHeight) {
       _gap = SizedBox(height: 0);
@@ -71,6 +71,7 @@ class MainMenuScreen extends StatelessWidget {
                         height: isPortrait,
                         image: AssetImage('assets/images/recovida.png'),
                       ))),
+              _gap,
               GestureDetector(
                   child: Align(
                       alignment: Alignment.center,
@@ -78,8 +79,6 @@ class MainMenuScreen extends StatelessWidget {
                         height: isPortrait2,
                         image: AssetImage('assets/images/logo.gif'),
                       ))),
-
-              
             ],
           ),
           squarishMainArea: Row(
@@ -96,7 +95,6 @@ class MainMenuScreen extends StatelessWidget {
                     height: 70,
                     image: AssetImage('assets/images/star.png'),
                   )),
-              
             ],
           ),
           rectangularMenuArea: Column(
@@ -164,8 +162,4 @@ class MainMenuScreen extends StatelessWidget {
       },
     );
   }
-
-  static const _gap = SizedBox(height: 10);
 }
-
-

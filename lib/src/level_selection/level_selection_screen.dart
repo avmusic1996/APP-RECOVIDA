@@ -21,24 +21,21 @@ class LevelSelectionScreen extends StatelessWidget {
     final palette = context.watch<Palette>();
     final playerProgress = context.watch<PlayerProgress>();
     final audioController = context.watch<AudioController>();
-     final screenWidth = MediaQuery.of(context).size.width;
+    final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     double isPortrait = 0;
     double isPortrait2 = 0;
-    var _gap = SizedBox(height: 100);
+    var _gap = SizedBox(height: 30);
 
     if (screenWidth >= screenHeight) {
       _gap = SizedBox(height: 0);
 
-      isPortrait = screenHeight * 0.24;
+      isPortrait = screenHeight * 0.26;
 
-      isPortrait2 = 110;
-
-      isPortrait = screenHeight * 0.20;
-      isPortrait2 = 130;
+      isPortrait2 = 50;
     } else {
-      isPortrait = 300;
-      isPortrait2 = 200;
+      isPortrait = screenHeight * 0.4;
+      isPortrait2 = 80;
     }
 
     return Scaffold(
@@ -54,16 +51,17 @@ class LevelSelectionScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               GestureDetector(
+                  onTap: () {
+                    audioController.playSfx(SfxType.buttonTap);
+
+                    GoRouter.of(context).push('/settings');
+                  },
                   //alignment: Alignment.bottomCenter,
                   child: Image(
-                height: 40,
-                image: AssetImage('assets/images/selec.png'),
-              )),
+                    height: 40,
+                    image: AssetImage('assets/images/configuracion.png'),
+                  )),
               GestureDetector(
-                  // onTap: () {
-                  //   audioController.playSfx(SfxType.buttonTap);
-                  //   GoRouter.of(context).go('/settings');
-                  // },
                   child: Center(
                       //alignment: Alignment.bottomCenter,
                       child: Image(
@@ -74,35 +72,29 @@ class LevelSelectionScreen extends StatelessWidget {
           ),
           squarishMainArea: Column(
             children: [
-              // GestureDetector(
-              //     //alignment: Alignment.bottomCenter,
-              //     child: Image(
-              //   height: 200,
-              //   image: AssetImage('assets/images/container.png'),
-              // )),
               const Padding(
-                padding: EdgeInsets.all(09),
+                padding: EdgeInsets.all(0),
                 child: Text(
                   'Bienvenido',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                      fontFamily: 'arial',
-                      fontSize: 30),
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      fontFamily: 'times new roman',
+                      fontSize: 40),
                 ),
               ),
-              const SizedBox(height: 0),
+              _gap,
               GestureDetector(
-                  onTap: () {
-                    audioController.playSfx(SfxType.buttonTap);
-
-                    GoRouter.of(context).push('/settings');
-                  },
-                  //alignment: Alignment.bottomCenter,
-                  child: Image(
-                    height: isPortrait,
-                    image: AssetImage('assets/images/animationlogo.gif'),
-                  )),
+                  // onTap: () {
+                  //   audioController.playSfx(SfxType.buttonTap);
+                  //   GoRouter.of(context).go('/settings');
+                  // },
+                  child: Center(
+                      //alignment: Align.ment.bottomCenter,
+                      child: Image(
+                height: isPortrait,
+                image: AssetImage('assets/images/animationlogo.gif'),
+              ))),
               // Expanded(
               //   child: ListView(
               //     children: [
@@ -131,53 +123,54 @@ class LevelSelectionScreen extends StatelessWidget {
                     GoRouter.of(context).go('/jugar');
                   },
                   child: Image(
-                    height: 50,
+                    height: isPortrait2,
                     image: AssetImage('assets/images/jugar.png'),
                   )),
             ],
           ),
-          rectangularMenuArea: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GestureDetector(
-                  onTap: () {
-                    GoRouter.of(context).pop();
-                  },
-                  child: Image(
-                    height: 50,
-                    image: AssetImage('assets/images/atras.png'),
-                  )),
-              GestureDetector(
-                  onTap: () {
-                    audioController.playSfx(SfxType.buttonTap);
+          rectangularMenuArea: Padding(
+            padding: EdgeInsets.all(0),
+            // Even Margin On All Sides
+            //margin: EdgeInsets.all(0),
+            // Symetric Margin
 
-                    GoRouter.of(context).go('/settings');
-                  },
-                  child: Image(
-                    height: 50,
-                    image: AssetImage('assets/images/home.png'),
-                  )),
-              GestureDetector(
-                  onTap: () {
-                    audioController.playSfx(SfxType.buttonTap);
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                    onTap: () {
+                      GoRouter.of(context).pop();
+                    },
+                    child: Image(
+                      height: 50,
+                      image: AssetImage('assets/images/atras.png'),
+                    )),
+                GestureDetector(
+                    onTap: () {
+                      audioController.playSfx(SfxType.buttonTap);
 
-                    GoRouter.of(context).push('/settings');
-                  },
-                  //alignment: Alignment.bottomCenter,
-                  child: Image(
-                    height: 50,
-                    image: AssetImage('assets/images/siguiente.png'),
-                  )),
-            ],
+                      GoRouter.of(context).go('/');
+                    },
+                    child: Image(
+                      height: 50,
+                      image: AssetImage('assets/images/home.png'),
+                    )),
+                GestureDetector(
+                    onTap: () {
+                      audioController.playSfx(SfxType.buttonTap);
+
+                      GoRouter.of(context).push('/settings');
+                    },
+                    //alignment: Alignment.bottomCenter,
+                    child: Image(
+                      height: 50,
+                      image: AssetImage('assets/images/siguiente.png'),
+                    )),
+              ],
+            ),
           ),
         ),
       ),
-      // rectangularMenuArea: ElevatedButton(
-      //   onPressed: () {
-      //     GoRouter.of(context).pop();
-      //   },
-      //   child: const Text('Back'),
-      // ),
     );
   }
 }

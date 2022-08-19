@@ -18,6 +18,8 @@ const gameLevels = [
   GameLevel(
     number: 2,
     difficulty: 10,
+    achievementIdIOS: 'finished',
+    achievementIdAndroid: 'CdfIhE96aspNWLGSQg',
   ),
   GameLevel(
     number: 3,
