@@ -82,7 +82,7 @@ class LevelSelection extends StatelessWidget {
                         //style: TextStyle(),
                         enabled: playerProgress.highestLevelReached >=
                             level.number - 1,
-                        onTap: () {
+                        onTap: () {zzzzz
                           final audioController =
                               context.read<AudioController>();
                           audioController.playSfx(SfxType.buttonTap);
@@ -90,10 +90,11 @@ class LevelSelection extends StatelessWidget {
                           GoRouter.of(context)
                               .go('/play/session/${level.number}');
                         },
+
                         leading: Text(level.number.toString()),
                         title: Text('Level #${level.number}'),
                         textColor: Colors.black,
-                      )
+                      ),
                   ],
                 ),
               ),
