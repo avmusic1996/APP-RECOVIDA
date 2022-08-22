@@ -87,8 +87,8 @@ class LevelSelection extends StatelessWidget {
               //     )),
             ],
           ),
-          rectangularMenuArea: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          rectangularMenuArea: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               GestureDetector(
                   onTap: () {
@@ -96,7 +96,7 @@ class LevelSelection extends StatelessWidget {
                   },
                   child: Image(
                     height: 50,
-                    image: AssetImage('assets/images/atras.png'),
+                    image: AssetImage('assets/images/home.png'),
                   )),
             ],
           ),
