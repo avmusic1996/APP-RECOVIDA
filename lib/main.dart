@@ -11,6 +11,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:game_template/src/category_level/category_level2.dart';
 import 'src/panel_level/panel_level.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
@@ -26,6 +27,9 @@ import 'src/games_services/score.dart';
 import 'src/in_app_purchase/in_app_purchase.dart';
 import 'src/level_selection/level_selection_screen.dart';
 import 'src/level_selection/levels.dart';
+import 'src/category_level/category_level1.dart';
+import 'src/category_level/category_level2.dart';
+import 'src/category_level/category_level3.dart';
 import 'src/main_menu/main_menu_screen.dart';
 import 'src/play_session/play_session_screen.dart';
 import 'src/player_progress/persistence/local_storage_player_progress_persistence.dart';
@@ -128,6 +132,28 @@ void guardedMain() {
 
 Logger _log = Logger('main.dart');
 
+// class Cateuno extends StatelessWidget
+// {
+//   @override
+//   Widget build(BuildContext context)
+//   {
+//     return Scaffold(
+//       body: Container(
+//         child: GestureDetector(
+//           routes: [
+//             GoRoute(
+//               path: 'Cauno',
+//               pageBuilder: (context, state) => buildMyTransition(
+//               child: const Categoriauno(key: Key('Categoriauno')),
+//               color: context.watch<Palette>().backgroundLevelSelection,
+//                     ),
+//                   ),] 
+//         ),
+//       ),
+      
+//     );
+//   }
+// }
 class MyApp extends StatelessWidget {
   static final _router = GoRouter(
     routes: [
@@ -183,6 +209,13 @@ class MyApp extends StatelessWidget {
                     ),
                 routes: [
                   GoRoute(
+                    path: 'Cauno',
+                pageBuilder: (context, state) => buildMyTransition(
+                      child: const Categoriauno(key: Key('Categoriauno')),
+                      color: context.watch<Palette>().backgroundLevelSelection,
+                    ),
+                  ),
+                  GoRoute(
                     path: 'session/:level',
                     pageBuilder: (context, state) {
                       final levelNumber = int.parse(state.params['level']!);
@@ -213,6 +246,31 @@ class MyApp extends StatelessWidget {
                     },
                   )
                 ]),
+            // CATEGORIA 1
+            GoRoute(
+                    path: 'Cauno',
+                pageBuilder: (context, state) => buildMyTransition(
+                      child: const Categoriauno(key: Key('Categoriauno')),
+                      color: context.watch<Palette>().backgroundLevelSelection,
+                    ),
+                  ),
+            // CATEGORIA 2
+            GoRoute(
+                    path: 'Cados',
+                    pageBuilder: (context, state) => buildMyTransition(
+                      child: const Categoriados(key: Key('Categoriados')),
+                      color: context.watch<Palette>().backgroundLevelSelection,
+                    ),
+                  ),
+
+            // CATEGORIA 3
+            GoRoute(
+                    path: 'Catres',
+                pageBuilder: (context, state) => buildMyTransition(
+                      child: const Categoriatres(key: Key('Categoriatres')),
+                      color: context.watch<Palette>().backgroundLevelSelection,
+                    ),
+                  ),
             GoRoute(
               path: 'settings',
               builder: (context, state) =>
