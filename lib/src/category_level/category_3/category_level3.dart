@@ -6,23 +6,22 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-import '../audio/audio_controller.dart';
-import '../audio/sounds.dart';
-import '../player_progress/player_progress.dart';
-import '../style/palette.dart';
-import '../style/responsive_screen.dart';
-import '../level_selection/levels.dart';
-import '../panel_level/panel_level.dart';
+import '../../audio/audio_controller.dart';
+import '../../audio/sounds.dart';
+import '../../player_progress/player_progress.dart';
+import '../../style/palette.dart';
+import '../../style/responsive_screen.dart';
+import '../../level_selection/levels.dart';
+import '../../panel_level/panel_level.dart';
 
-class Categoriauno extends StatelessWidget {
-  const Categoriauno({super.key});
+class Categoriatres extends StatelessWidget {
+  const Categoriatres({super.key});
 
   @override
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
     final playerProgress = context.watch<PlayerProgress>();
     final audioController = context.watch<AudioController>();
-    
 
     return Scaffold(
       body: Container(
@@ -86,38 +85,30 @@ class Categoriauno extends StatelessWidget {
               OrientationSwitcher(
                 children: <Widget>[
                   GestureDetector(
-                    onTap: () { 
-                    GoRouter.of(context).go('/Cados'); 
-                    },
-                    child: Image(
+                      child: Image(
                     height: 100,
-                    image: AssetImage('assets/images/game1.png'),
-                  )
-                  ),
+                    image: AssetImage('assets/images/game11.png'),
+                  )),
                   GestureDetector(
-                    child: Image(
+                      child: Image(
                     height: 100,
-                    image: AssetImage('assets/images/game2.png'),
-                  )
-                  ),
+                    image: AssetImage('assets/images/game12.png'),
+                  )),
                   GestureDetector(
-                    child: Image(
+                      child: Image(
                     height: 100,
-                    image: AssetImage('assets/images/game3.png'),
-                  )
-                  ),
+                    image: AssetImage('assets/images/game13.png'),
+                  )),
                   GestureDetector(
-                    child: Image(
+                      child: Image(
                     height: 100,
-                    image: AssetImage('assets/images/game4.png'),
-                  )
-                  ),
+                    image: AssetImage('assets/images/game14.png'),
+                  )),
                   GestureDetector(
-                    child: Image(
+                      child: Image(
                     height: 100,
-                    image: AssetImage('assets/images/game5.png'),
-                  )
-                  ),
+                    image: AssetImage('assets/images/game15.png'),
+                  )),
                 ],
               ),
               // GestureDetector(

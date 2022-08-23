@@ -32,10 +32,10 @@ class LevelSelectionScreen extends StatelessWidget {
 
       isPortrait = screenHeight * 0.26;
 
-      isPortrait2 = 50;
+      isPortrait2 = screenHeight * 0.11;
     } else {
       isPortrait = screenHeight * 0.4;
-      isPortrait2 = 80;
+      isPortrait2 = screenHeight * 0.09;
     }
 
     return Scaffold(

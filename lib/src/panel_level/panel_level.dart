@@ -81,15 +81,19 @@ import '../level_selection/levels.dart';
 
 class OrientationSwitcher extends StatelessWidget {
   final List<Widget> children;
-  const OrientationSwitcher({Key? key, required this.children, }) : super(key: key);
+  const OrientationSwitcher({
+    Key? key,
+    required this.children,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     Orientation orientation = MediaQuery.of(context).orientation;
     return orientation == Orientation.portrait
-    ? Column(children: children)
-    : Row(mainAxisAlignment: MainAxisAlignment.center, children: children);
+        ? Column(children: children)
+        : Row(mainAxisAlignment: MainAxisAlignment.center, children: children);
   }
 }
+
 class LevelSelection extends StatelessWidget {
   const LevelSelection({super.key});
   @override
@@ -99,29 +103,22 @@ class LevelSelection extends StatelessWidget {
     final audioController = context.watch<AudioController>();
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    double isPortrait = 0;
+
     double isPortrait2 = 0;
-    double isPortrait1 = 0;
     double isPortrait3 = 0;
-    var _gap = SizedBox(height: 30);
+    var _gap = SizedBox(height: 0);
 
     if (screenWidth >= screenHeight) {
       _gap = SizedBox(height: 0);
-      isPortrait = screenHeight * 0.26;
-      isPortrait2 = 150;
+      isPortrait2 = screenHeight * 0.29;
+      isPortrait3 = screenWidth * 0.28;
+      ;
     } else {
-      isPortrait = screenHeight * 0.4;
-      isPortrait2 = 180;
-    };
-    if (screenHeight  >= screenWidth) {
-      _gap = SizedBox(height: 0);
-      isPortrait1 = screenWidth * 0.26;
-      isPortrait3 = 180;
-    } else {
-      isPortrait1 = screenWidth * 0.4;
-      isPortrait3 = 150;
+      isPortrait2 = screenHeight * 0.19;
+      isPortrait3 = screenWidth * 0.50;
+      ;
     }
-    
+    ;
 
     return Scaffold(
       body: Container(
@@ -162,7 +159,7 @@ class LevelSelection extends StatelessWidget {
               //   height: 200,
               //   image: AssetImage('assets/images/container.png'),
               // )),
-          const Padding(
+              const Padding(
                 padding: EdgeInsets.all(09),
                 child: Text(
                   'CATEGORIAS!!!',
@@ -175,93 +172,88 @@ class LevelSelection extends StatelessWidget {
               ),
               const SizedBox(height: 0),
 
-              OrientationSwitcher(
-              children: <Widget>[
-                    GestureDetector(
-                onTap: () {
-                GoRouter.of(context).go('/Cauno'); 
-              },
-                    child: Container(
+              OrientationSwitcher(children: <Widget>[
+                GestureDetector(
+                  onTap: () {
+                    GoRouter.of(context).go('/Cauno');
+                  },
+                  child: Container(
                     height: isPortrait2,
                     width: isPortrait3,
-                    margin: EdgeInsets.all(8),  
+                    margin: EdgeInsets.all(8),
                     padding: EdgeInsets.all(8.0),
                     decoration: new BoxDecoration(
-                    borderRadius:BorderRadius.circular(3),
-              // color:Colors.green,
-                    image: new DecorationImage(
+                      borderRadius: BorderRadius.circular(3),
+                      // color:Colors.green,
+                      image: new DecorationImage(
                         image: ExactAssetImage('assets/images/cauno.png'),
                         fit: BoxFit.fitHeight,
-                        ),
                       ),
-                    
-              // child: Text("1",style: TextStyle(color:Color.fromARGB(255, 255, 255, 255),fontSize:14),), 
-            ),
-              ),
-              GestureDetector(
-              onTap: () { 
-                GoRouter.of(context).go('/Cados'); 
-                },
-              child: Container(
-                height: isPortrait2,
-                width: isPortrait3,
-                margin: EdgeInsets.all(8),  
-                padding: EdgeInsets.all(8.0),
-                decoration: new BoxDecoration(
-                borderRadius:BorderRadius.circular(3),  
-                image: new DecorationImage(
-                  image: ExactAssetImage('assets/images/cados.png'),
-                  fit: BoxFit.fitHeight,
-                  ),
-              ),
-          
-              // child: Text("2",style: TextStyle(color:Color.fromARGB(255, 255, 255, 255),fontSize:14),),  
-            ),
-            ),
-            GestureDetector(
-              onTap: () { 
-                GoRouter.of(context).go('/Catres'); 
-                },
-              child: Container(
-              height: isPortrait2,
-              width: isPortrait3,
-              margin: EdgeInsets.all(8),  
-              padding: EdgeInsets.all(8.0),
-              decoration: new BoxDecoration(
-              borderRadius:BorderRadius.circular(3),  
-              image: new DecorationImage(
-                  image: ExactAssetImage('assets/images/catres.png'),
-                  fit: BoxFit.fitHeight,
-                  ),
-              ),
+                    ),
 
-
-              // child: Text("1",style: TextStyle(color:Color.fromARGB(255, 255, 255, 255),fontSize:14),
-              // ),
-               
-            ),  
-            )
-              // place children here like its a column or row.
-                  ]
+                    // child: Text("1",style: TextStyle(color:Color.fromARGB(255, 255, 255, 255),fontSize:14),),
+                  ),
                 ),
-          
+                GestureDetector(
+                  onTap: () {
+                    GoRouter.of(context).go('/Cados');
+                  },
+                  child: Container(
+                    height: isPortrait2,
+                    width: isPortrait3,
+                    margin: EdgeInsets.all(8),
+                    padding: EdgeInsets.all(8.0),
+                    decoration: new BoxDecoration(
+                      borderRadius: BorderRadius.circular(3),
+                      image: new DecorationImage(
+                        image: ExactAssetImage('assets/images/cados.png'),
+                        fit: BoxFit.fitHeight,
+                      ),
+                    ),
 
-          //   children: Row(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   crossAxisAlignment: CrossAxisAlignment.end,
-          //   children: [
-          //     GestureDetector(
-          //         onTap: () {
-          //           audioController.playSfx(SfxType.buttonTap);
+                    // child: Text("2",style: TextStyle(color:Color.fromARGB(255, 255, 255, 255),fontSize:14),),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    GoRouter.of(context).go('/Catres');
+                  },
+                  child: Container(
+                    height: isPortrait2,
+                    width: isPortrait3,
+                    margin: EdgeInsets.all(8),
+                    padding: EdgeInsets.all(8.0),
+                    decoration: new BoxDecoration(
+                      borderRadius: BorderRadius.circular(3),
+                      image: new DecorationImage(
+                        image: ExactAssetImage('assets/images/catres.png'),
+                        fit: BoxFit.fitHeight,
+                      ),
+                    ),
 
-          //           GoRouter.of(context).go('/play');
-          //         },
-          //         child: Image(
-          //           height: 70,
-          //           image: AssetImage('assets/images/star.png'),
-          //         )),
-          //   ],
-          // ),
+                    // child: Text("1",style: TextStyle(color:Color.fromARGB(255, 255, 255, 255),fontSize:14),
+                    // ),
+                  ),
+                )
+                // place children here like its a column or row.
+              ]),
+
+              //   children: Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   crossAxisAlignment: CrossAxisAlignment.end,
+              //   children: [
+              //     GestureDetector(
+              //         onTap: () {
+              //           audioController.playSfx(SfxType.buttonTap);
+
+              //           GoRouter.of(context).go('/play');
+              //         },
+              //         child: Image(
+              //           height: 70,
+              //           image: AssetImage('assets/images/star.png'),
+              //         )),
+              //   ],
+              // ),
               // GestureDetector(
               //     onTap: () {
               //       GoRouter.of(context).go('/select/level');
