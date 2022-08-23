@@ -12,7 +12,7 @@ import '../../player_progress/player_progress.dart';
 import '../../style/palette.dart';
 import '../../style/responsive_screen.dart';
 import '../../level_selection/levels.dart';
-import '../../panel_level/panel_level.dart';
+import '../panel_level.dart';
 
 class LevelUno extends StatelessWidget {
   const LevelUno({super.key});
@@ -27,7 +27,7 @@ class LevelUno extends StatelessWidget {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: ExactAssetImage('assets/images/nature1.png'),
+            image: ExactAssetImage('assets/images/level1.jpg'),
             fit: BoxFit.cover,
           ),
         ),
@@ -62,7 +62,7 @@ class LevelUno extends StatelessWidget {
                   'Nivel 1',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 255, 255, 255),
+                      color: Color.fromARGB(255, 0, 0, 0),
                       fontFamily: 'arial',
                       fontSize: 30),
                 ),

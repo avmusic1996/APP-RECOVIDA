@@ -12,7 +12,7 @@ import '../../player_progress/player_progress.dart';
 import '../../style/palette.dart';
 import '../../style/responsive_screen.dart';
 import '../../level_selection/levels.dart';
-import '../../panel_level/panel_level.dart';
+import '../panel_level.dart';
 
 class LevelDos extends StatelessWidget {
   const LevelDos({super.key});

@@ -124,7 +124,7 @@ class LevelSelection extends StatelessWidget {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: ExactAssetImage('assets/images/nature1.png'),
+            image: ExactAssetImage('assets/images/fondo2.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -186,7 +186,7 @@ class LevelSelection extends StatelessWidget {
                       borderRadius: BorderRadius.circular(3),
                       // color:Colors.green,
                       image: new DecorationImage(
-                        image: ExactAssetImage('assets/images/cauno.png'),
+                        image: ExactAssetImage('assets/images/preguntas.png'),
                         fit: BoxFit.fitHeight,
                       ),
                     ),
@@ -206,7 +206,8 @@ class LevelSelection extends StatelessWidget {
                     decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(3),
                       image: new DecorationImage(
-                        image: ExactAssetImage('assets/images/cados.png'),
+                        image:
+                            ExactAssetImage('assets/images/concentracion.png'),
                         fit: BoxFit.fitHeight,
                       ),
                     ),
@@ -226,7 +227,7 @@ class LevelSelection extends StatelessWidget {
                     decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(3),
                       image: new DecorationImage(
-                        image: ExactAssetImage('assets/images/catres.png'),
+                        image: ExactAssetImage('assets/images/agilidad.png'),
                         fit: BoxFit.fitHeight,
                       ),
                     ),
@@ -269,7 +270,7 @@ class LevelSelection extends StatelessWidget {
             children: [
               GestureDetector(
                   onTap: () {
-                    GoRouter.of(context).pop();
+                    GoRouter.of(context).go('/');
                   },
                   child: Image(
                     height: 50,

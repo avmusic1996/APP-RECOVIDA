@@ -17,7 +17,7 @@ import 'package:game_template/src/category_level/category_1/level_3.dart';
 import 'package:game_template/src/category_level/category_1/level_4.dart';
 import 'package:game_template/src/category_level/category_1/level_5.dart';
 import 'package:game_template/src/category_level/category_2/category_level2.dart';
-import 'src/panel_level/panel_level.dart';
+import 'src/category_level/panel_level.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:logging/logging.dart';

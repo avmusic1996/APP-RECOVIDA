@@ -12,7 +12,7 @@ import '../../player_progress/player_progress.dart';
 import '../../style/palette.dart';
 import '../../style/responsive_screen.dart';
 import '../../level_selection/levels.dart';
-import '../../panel_level/panel_level.dart';
+import '../panel_level.dart';
 
 class Categoriauno extends StatelessWidget {
   const Categoriauno({super.key});
@@ -110,7 +110,7 @@ class Categoriauno extends StatelessWidget {
                       )),
                   GestureDetector(
                       onTap: () {
-                        GoRouter.of(context).go('/levelcuatro');
+                        GoRouter.of(context).go('/levecuatro');
                       },
                       child: Image(
                         height: 100,
@@ -118,7 +118,7 @@ class Categoriauno extends StatelessWidget {
                       )),
                   GestureDetector(
                       onTap: () {
-                        GoRouter.of(context).go('/levelcinco');
+                        GoRouter.of(context).go('/levelcuatro');
                       },
                       child: Image(
                         height: 100,
