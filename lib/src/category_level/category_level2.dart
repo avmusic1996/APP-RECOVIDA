@@ -12,6 +12,7 @@ import '../player_progress/player_progress.dart';
 import '../style/palette.dart';
 import '../style/responsive_screen.dart';
 import '../level_selection/levels.dart';
+import '../panel_level/panel_level.dart';
 
 class Categoriados extends StatelessWidget {
   const Categoriados({super.key});
@@ -62,6 +63,14 @@ class Categoriados extends StatelessWidget {
               //   height: 200,
               //   image: AssetImage('assets/images/container.png'),
               // )),
+              GestureDetector(
+                  onTap: () {
+                    GoRouter.of(context).push('/jugar');
+                  },
+                  child: Image(
+                    height: 50,
+                    image: AssetImage('assets/images/atras.png'),
+                  )),
               const Padding(
                 padding: EdgeInsets.all(09),
                 child: Text(
@@ -72,13 +81,44 @@ class Categoriados extends StatelessWidget {
                       fontFamily: 'arial',
                       fontSize: 30),
                 ),
+                
+                
               ),
               const SizedBox(height: 0),
-              Row(
-                children: [
-                  Text('NIVEL 5 A 10')
+              OrientationSwitcher(
+                children: <Widget>[
+                  GestureDetector(
+                    child: Image(
+                    height: 100,
+                    image: AssetImage('assets/images/game6.png'),
+                  )
+                  ),
+                  GestureDetector(
+                    child: Image(
+                    height: 100,
+                    image: AssetImage('assets/images/game7.png'),
+                  )
+                  ),
+                  GestureDetector(
+                    child: Image(
+                    height: 100,
+                    image: AssetImage('assets/images/game8.png'),
+                  )
+                  ),
+                  GestureDetector(
+                    child: Image(
+                    height: 100,
+                    image: AssetImage('assets/images/game9.png'),
+                  )
+                  ),
+                  GestureDetector(
+                    child: Image(
+                    height: 100,
+                    image: AssetImage('assets/images/game10.png'),
+                  )
+                  ),
                 ],
-              )
+              ),
               // GestureDetector(
               //     onTap: () {
               //       GoRouter.of(context).go('/select/level');

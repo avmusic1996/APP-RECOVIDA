@@ -55,6 +55,7 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
         ),
       ],
       child: IgnorePointer(
+        
         ignoring: _duringCelebration,
         child: Scaffold(
           backgroundColor: palette.backgroundPlaySession,
