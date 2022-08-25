@@ -62,14 +62,7 @@ class Categoriados extends StatelessWidget {
               //   height: 200,
               //   image: AssetImage('assets/images/container.png'),
               // )),
-              GestureDetector(
-                  onTap: () {
-                    GoRouter.of(context).push('/jugar');
-                  },
-                  child: Image(
-                    height: 50,
-                    image: AssetImage('assets/images/atras.png'),
-                  )),
+
               const Padding(
                 padding: EdgeInsets.all(09),
                 child: Text(
@@ -126,7 +119,7 @@ class Categoriados extends StatelessWidget {
             children: [
               GestureDetector(
                   onTap: () {
-                    GoRouter.of(context).pop();
+                    GoRouter.of(context).push('/jugar');
                   },
                   child: Image(
                     height: 50,

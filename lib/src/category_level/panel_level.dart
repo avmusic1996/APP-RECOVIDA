@@ -110,12 +110,12 @@ class LevelSelection extends StatelessWidget {
 
     if (screenWidth >= screenHeight) {
       _gap = SizedBox(height: 0);
-      isPortrait2 = screenHeight * 0.29;
-      isPortrait3 = screenWidth * 0.28;
+      isPortrait2 = screenHeight * 0.43;
+      isPortrait3 = screenWidth * 0.20;
       ;
     } else {
-      isPortrait2 = screenHeight * 0.19;
-      isPortrait3 = screenWidth * 0.50;
+      isPortrait2 = screenHeight * 0.23;
+      isPortrait3 = screenWidth * 0.80;
       ;
     }
     ;
@@ -270,7 +270,7 @@ class LevelSelection extends StatelessWidget {
             children: [
               GestureDetector(
                   onTap: () {
-                    GoRouter.of(context).go('/');
+                    GoRouter.of(context).go('/play');
                   },
                   child: Image(
                     height: 50,

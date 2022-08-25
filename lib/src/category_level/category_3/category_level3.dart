@@ -57,14 +57,6 @@ class Categoriatres extends StatelessWidget {
           ),
           squarishMainArea: Column(
             children: [
-              GestureDetector(
-                  onTap: () {
-                    GoRouter.of(context).push('/jugar');
-                  },
-                  child: Image(
-                    height: 50,
-                    image: AssetImage('assets/images/atras.png'),
-                  )),
               // GestureDetector(
               //     //alignment: Alignment.bottomCenter,
               //     child: Image(
@@ -127,7 +119,7 @@ class Categoriatres extends StatelessWidget {
             children: [
               GestureDetector(
                   onTap: () {
-                    GoRouter.of(context).pop();
+                    GoRouter.of(context).push('/jugar');
                   },
                   child: Image(
                     height: 50,

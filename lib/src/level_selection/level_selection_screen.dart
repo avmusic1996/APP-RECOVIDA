@@ -30,7 +30,7 @@ class LevelSelectionScreen extends StatelessWidget {
     if (screenWidth >= screenHeight) {
       _gap = SizedBox(height: 0);
 
-      isPortrait = screenHeight * 0.26;
+      isPortrait = screenHeight * 0.30;
 
       isPortrait2 = screenHeight * 0.11;
     } else {
