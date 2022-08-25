@@ -103,17 +103,18 @@ class LevelSelection extends StatelessWidget {
     final audioController = context.watch<AudioController>();
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    double isPortrait = 0;
+
     double isPortrait2 = 0;
-    double isPortrait1 = 0;
     double isPortrait3 = 0;
-    var _gap = SizedBox(height: 30);
+    var _gap = SizedBox(height: 0);
 
     if (screenWidth >= screenHeight) {
       _gap = SizedBox(height: 0);
-      isPortrait = screenHeight * 0.26;
-      isPortrait2 = 150;
+      isPortrait2 = screenHeight * 0.29;
+      isPortrait3 = screenWidth * 0.28;
+      ;
     } else {
+<<<<<<< HEAD:lib/src/panel_level/panel_level.dart
       isPortrait = screenHeight * 0.4;
       isPortrait2 = 180;
     }
@@ -126,12 +127,19 @@ class LevelSelection extends StatelessWidget {
       isPortrait1 = screenWidth * 0.4;
       isPortrait3 = 150;
     }
+=======
+      isPortrait2 = screenHeight * 0.19;
+      isPortrait3 = screenWidth * 0.50;
+      ;
+    }
+    ;
+>>>>>>> e3b262185af51eabbc84fb59a6b1cfc9f1bfc377:lib/src/category_level/panel_level.dart
 
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: ExactAssetImage('assets/images/nature1.png'),
+            image: ExactAssetImage('assets/images/fondo2.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -193,7 +201,11 @@ class LevelSelection extends StatelessWidget {
                       borderRadius: BorderRadius.circular(3),
                       // color:Colors.green,
                       image: new DecorationImage(
+<<<<<<< HEAD:lib/src/panel_level/panel_level.dart
                         image: ExactAssetImage('assets/images/cauno.png'),
+=======
+                        image: ExactAssetImage('assets/images/preguntas.png'),
+>>>>>>> e3b262185af51eabbc84fb59a6b1cfc9f1bfc377:lib/src/category_level/panel_level.dart
                         fit: BoxFit.fitHeight,
                       ),
                     ),
@@ -213,7 +225,12 @@ class LevelSelection extends StatelessWidget {
                     decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(3),
                       image: new DecorationImage(
+<<<<<<< HEAD:lib/src/panel_level/panel_level.dart
                         image: ExactAssetImage('assets/images/cados.png'),
+=======
+                        image:
+                            ExactAssetImage('assets/images/concentracion.png'),
+>>>>>>> e3b262185af51eabbc84fb59a6b1cfc9f1bfc377:lib/src/category_level/panel_level.dart
                         fit: BoxFit.fitHeight,
                       ),
                     ),
@@ -233,7 +250,11 @@ class LevelSelection extends StatelessWidget {
                     decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(3),
                       image: new DecorationImage(
+<<<<<<< HEAD:lib/src/panel_level/panel_level.dart
                         image: ExactAssetImage('assets/images/catres.png'),
+=======
+                        image: ExactAssetImage('assets/images/agilidad.png'),
+>>>>>>> e3b262185af51eabbc84fb59a6b1cfc9f1bfc377:lib/src/category_level/panel_level.dart
                         fit: BoxFit.fitHeight,
                       ),
                     ),
@@ -276,7 +297,7 @@ class LevelSelection extends StatelessWidget {
             children: [
               GestureDetector(
                   onTap: () {
-                    GoRouter.of(context).pop();
+                    GoRouter.of(context).go('/');
                   },
                   child: Image(
                     height: 50,

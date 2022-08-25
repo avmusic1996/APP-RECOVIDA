@@ -6,23 +6,22 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-import '../audio/audio_controller.dart';
-import '../audio/sounds.dart';
-import '../player_progress/player_progress.dart';
-import '../style/palette.dart';
-import '../style/responsive_screen.dart';
-import '../level_selection/levels.dart';
-import '../panel_level/panel_level.dart';
+import '../../audio/audio_controller.dart';
+import '../../audio/sounds.dart';
+import '../../player_progress/player_progress.dart';
+import '../../style/palette.dart';
+import '../../style/responsive_screen.dart';
+import '../../level_selection/levels.dart';
+import '../panel_level.dart';
 
-class Categoriauno extends StatelessWidget {
-  const Categoriauno({super.key});
+class LevelCinco extends StatelessWidget {
+  const LevelCinco({super.key});
 
   @override
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
     final playerProgress = context.watch<PlayerProgress>();
     final audioController = context.watch<AudioController>();
-    
 
     return Scaffold(
       body: Container(
@@ -83,43 +82,7 @@ class Categoriauno extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 0),
-              OrientationSwitcher(
-                children: <Widget>[
-                  GestureDetector(
-                    onTap: () { 
-                    GoRouter.of(context).go('/Cados'); 
-                    },
-                    child: Image(
-                    height: 100,
-                    image: AssetImage('assets/images/game1.png'),
-                  )
-                  ),
-                  GestureDetector(
-                    child: Image(
-                    height: 100,
-                    image: AssetImage('assets/images/game2.png'),
-                  )
-                  ),
-                  GestureDetector(
-                    child: Image(
-                    height: 100,
-                    image: AssetImage('assets/images/game3.png'),
-                  )
-                  ),
-                  GestureDetector(
-                    child: Image(
-                    height: 100,
-                    image: AssetImage('assets/images/game4.png'),
-                  )
-                  ),
-                  GestureDetector(
-                    child: Image(
-                    height: 100,
-                    image: AssetImage('assets/images/game5.png'),
-                  )
-                  ),
-                ],
-              ),
+
               // GestureDetector(
               //     onTap: () {
               //       GoRouter.of(context).go('/select/level');
