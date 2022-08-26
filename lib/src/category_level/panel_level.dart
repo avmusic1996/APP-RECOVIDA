@@ -206,7 +206,7 @@ class LevelSelection extends StatelessWidget {
                     decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(3),
                       image: new DecorationImage(
-                        image: ExactAssetImage('assets/images/cate1.gif'),
+                        image: ExactAssetImage('assets/images/cate2.png'),
                         fit: BoxFit.fitHeight,
                       ),
                     ),
@@ -226,7 +226,7 @@ class LevelSelection extends StatelessWidget {
                     decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(3),
                       image: new DecorationImage(
-                        image: ExactAssetImage('assets/images/cate1.gif'),
+                        image: ExactAssetImage('assets/images/cate3.png'),
                         fit: BoxFit.fitHeight,
                       ),
                     ),
