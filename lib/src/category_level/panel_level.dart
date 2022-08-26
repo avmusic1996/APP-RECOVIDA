@@ -110,36 +110,21 @@ class LevelSelection extends StatelessWidget {
 
     if (screenWidth >= screenHeight) {
       _gap = SizedBox(height: 0);
-      isPortrait2 = screenHeight * 0.29;
-      isPortrait3 = screenWidth * 0.28;
+      isPortrait2 = screenHeight * 0.37;
+      isPortrait3 = screenWidth * 0.20;
       ;
     } else {
-<<<<<<< HEAD:lib/src/panel_level/panel_level.dart
-      isPortrait = screenHeight * 0.4;
-      isPortrait2 = 180;
-    }
-    ;
-    if (screenHeight >= screenWidth) {
-      _gap = SizedBox(height: 0);
-      isPortrait1 = screenWidth * 0.26;
-      isPortrait3 = 180;
-    } else {
-      isPortrait1 = screenWidth * 0.4;
-      isPortrait3 = 150;
-    }
-=======
-      isPortrait2 = screenHeight * 0.19;
-      isPortrait3 = screenWidth * 0.50;
+      isPortrait2 = screenHeight * 0.22;
+      isPortrait3 = screenWidth * 0.80;
       ;
     }
     ;
->>>>>>> e3b262185af51eabbc84fb59a6b1cfc9f1bfc377:lib/src/category_level/panel_level.dart
 
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: ExactAssetImage('assets/images/fondo2.png'),
+            image: ExactAssetImage('assets/images/fondolevels.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -177,7 +162,7 @@ class LevelSelection extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.all(09),
                 child: Text(
-                  'CATEGORIAS!!!',
+                  '',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
@@ -201,11 +186,7 @@ class LevelSelection extends StatelessWidget {
                       borderRadius: BorderRadius.circular(3),
                       // color:Colors.green,
                       image: new DecorationImage(
-<<<<<<< HEAD:lib/src/panel_level/panel_level.dart
-                        image: ExactAssetImage('assets/images/cauno.png'),
-=======
-                        image: ExactAssetImage('assets/images/preguntas.png'),
->>>>>>> e3b262185af51eabbc84fb59a6b1cfc9f1bfc377:lib/src/category_level/panel_level.dart
+                        image: ExactAssetImage('assets/images/cate1.gif'),
                         fit: BoxFit.fitHeight,
                       ),
                     ),
@@ -225,12 +206,7 @@ class LevelSelection extends StatelessWidget {
                     decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(3),
                       image: new DecorationImage(
-<<<<<<< HEAD:lib/src/panel_level/panel_level.dart
-                        image: ExactAssetImage('assets/images/cados.png'),
-=======
-                        image:
-                            ExactAssetImage('assets/images/concentracion.png'),
->>>>>>> e3b262185af51eabbc84fb59a6b1cfc9f1bfc377:lib/src/category_level/panel_level.dart
+                        image: ExactAssetImage('assets/images/cate1.gif'),
                         fit: BoxFit.fitHeight,
                       ),
                     ),
@@ -250,11 +226,7 @@ class LevelSelection extends StatelessWidget {
                     decoration: new BoxDecoration(
                       borderRadius: BorderRadius.circular(3),
                       image: new DecorationImage(
-<<<<<<< HEAD:lib/src/panel_level/panel_level.dart
-                        image: ExactAssetImage('assets/images/catres.png'),
-=======
-                        image: ExactAssetImage('assets/images/agilidad.png'),
->>>>>>> e3b262185af51eabbc84fb59a6b1cfc9f1bfc377:lib/src/category_level/panel_level.dart
+                        image: ExactAssetImage('assets/images/cate1.gif'),
                         fit: BoxFit.fitHeight,
                       ),
                     ),
@@ -297,7 +269,7 @@ class LevelSelection extends StatelessWidget {
             children: [
               GestureDetector(
                   onTap: () {
-                    GoRouter.of(context).go('/');
+                    GoRouter.of(context).go('/play');
                   },
                   child: Image(
                     height: 50,
