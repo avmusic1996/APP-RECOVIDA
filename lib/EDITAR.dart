@@ -1,34 +1,34 @@
-// Copyright 2022, the Flutter project authors. Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
-// BSD-style license that can be found in the LICENSE file.
-
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
-import 'package:game_template/sql_helper.dart';
-
-import '../../audio/audio_controller.dart';
-import '../../audio/sounds.dart';
-import '../../player_progress/player_progress.dart';
-import '../../style/palette.dart';
-import '../../style/responsive_screen.dart';
-import '../../level_selection/levels.dart';
-import '../panel_level.dart';
 
 void main() {
-  runApp(const LevelUno());
+  runApp(const Leveluno());
+}
+
+class Leveluno extends StatelessWidget {
+  const Leveluno({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Book List',
+      theme: ThemeData(
+          primarySwatch: Colors.brown,
+          scaffoldBackgroundColor: const Color(0xFFFFFFFF)),
+      home: const LevelUno(nombre: 'Flutter Book List'),
+    );
+  }
 }
 
 class LevelUno extends StatefulWidget {
-  const LevelUno({super.key});
-  // const ({Key? key, required this.nombre}) : super(key: key);
+  const LevelUno({Key? key, required this.nombre}) : super(key: key);
 
-  // final String nombre;
+  final String nombre;
+
   @override
   State<LevelUno> createState() => _MyHomePageState();
 }
+
 class _MyHomePageState extends State<LevelUno> {
-  
   TextEditingController nombreController = TextEditingController();
   TextEditingController edadController = TextEditingController();
   // TextEditingController authorController = TextEditingController();
@@ -40,19 +40,21 @@ class _MyHomePageState extends State<LevelUno> {
     super.initState();
   }
 
-List<Map<String, dynamic>> books = [];
+  // Collect Data from DB
+  List<Map<String, dynamic>> books = [];
   void refreshBooks() async {
     final data = await SQLHelper.getBooks();
     setState(() {
       books = data;
     });
   }
+
   @override
-Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     print(books);
     return Scaffold(
       appBar: AppBar(
-        
+        title: Text(widget.nombre),
       ),
       body: ListView.builder(
           itemCount: books.length,
@@ -109,14 +111,12 @@ Widget build(BuildContext context) {
               )),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // modalForm(null);
+          modalForm(null!);
         },
         child: const Icon(Icons.add),
       ),
     );
-      }
-
-
+  }
 
   //Function -> Add
   Future<void> addBook() async {
@@ -138,12 +138,14 @@ Widget build(BuildContext context) {
     refreshBooks();
   }
 
-
-    void modalForm(int id) async {
+  //Form Add
+  void modalForm(int id) async {
     if (id != null) {
       final dataBooks = books.firstWhere((element) => element['id'] == id);
       nombreController.text = dataBooks['nombre'];
       edadController.text = dataBooks['edad'];
+      // yearController.text = dataBooks['year'];
+      // descController.text = dataBooks['desc'];
     }
 
     showModalBottomSheet(
@@ -168,6 +170,14 @@ Widget build(BuildContext context) {
                       controller: edadController,
                       decoration: const InputDecoration(hintText: 'edad'),
                     ),
+                    // TextField(
+                    //   controller: yearController,
+                    //   decoration: const InputDecoration(hintText: 'Year'),
+                    // ),
+                    // TextField(
+                    //   controller: descController,
+                    //   decoration: const InputDecoration(hintText: 'Desc'),
+                    // ),
                     const SizedBox(
                       height: 20,
                     ),
@@ -182,6 +192,8 @@ Widget build(BuildContext context) {
                           // await addBook();
                           nombreController.text = '';
                           edadController.text = '';
+                          // yearController.text = '';
+                          // descController.text = '';
                           Navigator.pop(context);
                         },
                         child: Text(id == null ? 'Add' : 'Update'))
