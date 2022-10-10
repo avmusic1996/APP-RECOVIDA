@@ -24,13 +24,16 @@ class LevelUno extends StatefulWidget {
   // const ({Key? key, required this.nombre}) : super(key: key);
 
   // final String nombre;
+  // final String nombre;
+  // final String edad;
   @override
   State<LevelUno> createState() => _MyHomePageState();
 }
 class _MyHomePageState extends State<LevelUno> {
   
-  TextEditingController nombreController = TextEditingController();
-  TextEditingController edadController = TextEditingController();
+
+  TextEditingController nombreController = new TextEditingController();
+  TextEditingController edadController = new TextEditingController();
   // TextEditingController authorController = TextEditingController();
   // TextEditingController yearController = TextEditingController();
 
