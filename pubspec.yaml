@@ -32,11 +32,8 @@ dependencies:
   lottie: ^1.4.1
   flame: ^1.2.1
   page_transition: ^2.0.9
-<<<<<<< HEAD
   http: ^0.13.5
-=======
   sqflite: ^2.0.3+1
->>>>>>> 5ff2751bc1d5227f92bc78b2aa52118e96171467
 
 dev_dependencies:
   flutter_test:

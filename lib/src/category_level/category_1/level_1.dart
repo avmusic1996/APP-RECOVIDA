@@ -32,9 +32,13 @@ class LevelUno extends StatefulWidget {
 }
 class _MyHomePageState extends State<LevelUno> {
   
+  final 
+  TextEditingController nomcontroller = TextEditingController();
+  TextEditingController edcontroller = TextEditingController();
+  Future<Album>? _futureAlbum;
 
-  TextEditingController nombreController = new TextEditingController();
-  TextEditingController edadController = new TextEditingController();
+  // TextEditingController nombreController = new TextEditingController();
+  // TextEditingController edadController = new TextEditingController();
   // TextEditingController authorController = TextEditingController();
   // TextEditingController yearController = TextEditingController();
 
@@ -55,7 +59,6 @@ List<Map<String, dynamic>> books = [];
 Widget build(BuildContext context) {
     print(books);
     return Scaffold(
-<<<<<<< HEAD
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -114,6 +117,36 @@ Widget build(BuildContext context) {
                 ),
               ),
               const SizedBox(height: 0),
+              const Padding(
+                padding: EdgeInsets.all(09),
+                child: TextField(
+                // controller: nomController,
+                decoration: const InputDecoration(hintText: 'Nombre'),
+              ),
+              ),
+              const Padding(
+                padding: EdgeInsets.all(09),
+                child: TextField(
+                // controller: edController,
+                decoration: const InputDecoration(hintText: 'edad'),
+              ),
+              ),
+              const Padding(
+                padding: EdgeInsets.all(09),
+                child: TextField(
+                
+                decoration: const InputDecoration(hintText: 'celular'),
+              ),
+              ),
+              ElevatedButton(
+          onPressed: () {
+            setState(() {
+              _futureAlbum = createAlbum(nomcontroller.text);
+            });
+          },
+          child: const Text('Create Data'),
+        ),
+              const SizedBox(height: 0),
 
               // GestureDetector(
               //     onTap: () {
@@ -138,7 +171,7 @@ Widget build(BuildContext context) {
                   )),
               GestureDetector(
                   onTap: () {
-                    audioController.playSfx(SfxType.buttonTap);
+                    
 
                     GoRouter.of(context).go('/');
                   },
@@ -148,7 +181,7 @@ Widget build(BuildContext context) {
                   )),
               GestureDetector(
                   onTap: () {
-                    audioController.playSfx(SfxType.buttonTap);
+                   
 
                     GoRouter.of(context).push('/settings');
                   },
@@ -207,9 +240,9 @@ class Album {
   }
 }
 
-void main() {
-  runApp(const MyApp());
-}
+// void main() {
+//   runApp(const MyApp());
+// }
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -279,145 +312,4 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-=======
-      appBar: AppBar(
-        
-      ),
-      body: ListView.builder(
-          itemCount: books.length,
-          itemBuilder: (context, index) => Card(
-                color: Colors.brown,
-                margin: const EdgeInsets.all(15),
-                child: ListTile(
-                  isThreeLine: true,
-                  title: Text(books[index]['title'],
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          // height: 5,
-                          fontSize: 20,
-                          color: Color(0xFFFFFFFF))),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("by. " + books[index]['author'],
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15,
-                              color: Color(0xFFFFFFFF))),
-                      Text(books[index]['year'],
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              height: 2,
-                              color: Color(0xFFFFFFFF))),
-                      Text(
-                        books[index]['desc'],
-                        style: TextStyle(color: Color(0xFFFFFFFF)),
-                      ),
-                    ],
-                  ),
-                  trailing: SizedBox(
-                    width: 100,
-                    child: Row(
-                      children: [
-                        IconButton(
-                            onPressed: () => modalForm(books[index]['id']),
-                            icon: const Icon(
-                              Icons.edit,
-                              color: Colors.white,
-                            )),
-                        IconButton(
-                            onPressed: () => deleteBook(books[index]['id']),
-                            icon: const Icon(
-                              Icons.delete,
-                              color: Colors.white,
-                            ))
-                      ],
-                    ),
-                  ),
-                ),
-              )),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // modalForm(null);
-        },
-        child: const Icon(Icons.add),
-      ),
-    );
-      }
-
-
-
-  //Function -> Add
-  Future<void> addBook() async {
-    await SQLHelper.addBook(nombreController.text, edadController.text);
-    refreshBooks();
-  }
-
-  // Function -> Update
-  Future<void> updateBooks(int id) async {
-    await SQLHelper.updateBooks(id, nombreController.text, edadController.text);
-    refreshBooks();
-  }
-
-  // Function -> Delete
-  void deleteBook(int id) async {
-    await SQLHelper.deleteBook(id);
-    ScaffoldMessenger.of(context)
-        .showSnackBar(const SnackBar(content: Text("Successfull Delete Book")));
-    refreshBooks();
-  }
-
-
-    void modalForm(int id) async {
-    if (id != null) {
-      final dataBooks = books.firstWhere((element) => element['id'] == id);
-      nombreController.text = dataBooks['nombre'];
-      edadController.text = dataBooks['edad'];
-    }
-
-    showModalBottomSheet(
-        context: context,
-        builder: (_) => Container(
-              padding: const EdgeInsets.all(15),
-              width: double.infinity,
-              height: 800,
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    TextField(
-                      controller: nombreController,
-                      decoration: const InputDecoration(hintText: 'nombre'),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    TextField(
-                      controller: edadController,
-                      decoration: const InputDecoration(hintText: 'edad'),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    ElevatedButton(
-                        onPressed: () async {
-                          if (id == null) {
-                            await addBook();
-                          } else {
-                            await updateBooks(id);
-                          }
-
-                          // await addBook();
-                          nombreController.text = '';
-                          edadController.text = '';
-                          Navigator.pop(context);
-                        },
-                        child: Text(id == null ? 'Add' : 'Update'))
-                  ],
-                ),
-              ),
-            ));
-  }
-}
->>>>>>> 5ff2751bc1d5227f92bc78b2aa52118e96171467
+// REVISEN BIEN, FALTA........ FALTA TODO JAJAJAJAJAAJJAAJ
