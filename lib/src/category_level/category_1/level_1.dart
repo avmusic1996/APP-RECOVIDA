@@ -30,10 +30,9 @@ class LevelUno extends StatefulWidget {
   @override
   State<LevelUno> createState() => _MyHomePageState();
 }
+
 class _MyHomePageState extends State<LevelUno> {
-  
-  final 
-  TextEditingController nomcontroller = TextEditingController();
+  final TextEditingController nomcontroller = TextEditingController();
   TextEditingController edcontroller = TextEditingController();
   Future<Album>? _futureAlbum;
 
@@ -48,15 +47,16 @@ class _MyHomePageState extends State<LevelUno> {
     super.initState();
   }
 
-List<Map<String, dynamic>> books = [];
+  List<Map<String, dynamic>> books = [];
   void refreshBooks() async {
     final data = await SQLHelper.getBooks();
     setState(() {
       books = data;
     });
   }
+
   @override
-Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     print(books);
     return Scaffold(
       body: Container(
@@ -120,33 +120,45 @@ Widget build(BuildContext context) {
               const Padding(
                 padding: EdgeInsets.all(09),
                 child: TextField(
-                // controller: nomController,
-                decoration: const InputDecoration(hintText: 'Nombre'),
-              ),
-              ),
-              const Padding(
-                padding: EdgeInsets.all(09),
-                child: TextField(
-                // controller: edController,
-                decoration: const InputDecoration(hintText: 'edad'),
-              ),
+                  // controller: nomController,
+                  decoration: const InputDecoration(hintText: 'Nombre'),
+                ),
               ),
               const Padding(
                 padding: EdgeInsets.all(09),
                 child: TextField(
-                
-                decoration: const InputDecoration(hintText: 'celular'),
+                  // controller: edController,
+                  decoration: const InputDecoration(hintText: 'edad'),
+                ),
               ),
+              const Padding(
+                padding: EdgeInsets.all(09),
+                child: TextField(
+                  decoration: const InputDecoration(hintText: 'celular'),
+                ),
               ),
               ElevatedButton(
-          onPressed: () {
-            setState(() {
-              _futureAlbum = createAlbum(nomcontroller.text);
-            });
-          },
-          child: const Text('Create Data'),
-        ),
+                onPressed: () {
+                  setState(() {
+                    _futureAlbum = createAlbum(nomcontroller.text);
+                  });
+                },
+                child: const Text('Create Data'),
+              ),
               const SizedBox(height: 0),
+
+              TextField(
+                controller: _controller,
+                decoration: const InputDecoration(hintText: 'Enter Title'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    _futureAlbum = createAlbum(_controller.text);
+                  });
+                },
+                child: const Text('Create Data'),
+              ),
 
               // GestureDetector(
               //     onTap: () {
@@ -171,8 +183,6 @@ Widget build(BuildContext context) {
                   )),
               GestureDetector(
                   onTap: () {
-                    
-
                     GoRouter.of(context).go('/');
                   },
                   child: Image(
@@ -181,8 +191,6 @@ Widget build(BuildContext context) {
                   )),
               GestureDetector(
                   onTap: () {
-                   
-
                     GoRouter.of(context).push('/settings');
                   },
                   //alignment: Alignment.bottomCenter,
@@ -204,14 +212,25 @@ Widget build(BuildContext context) {
   }
 }
 
+final TextEditingController _controller = TextEditingController();
+
 Future<Album> createAlbum(String title) async {
   final response = await http.post(
-    Uri.parse('https://jsonplaceholder.typicode.com/albums'),
+    Uri.parse('http://app-juegos.epizy.com/planificacion/nivel1.php'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
     body: jsonEncode(<String, String>{
-      'title': title,
+      'nombre': title,
+      'fecha_hora': title,
+      'dias_año': title,
+      'continente': title,
+      'pais': title,
+      'ciudad': title,
+      'barrio': title,
+      'presidente': title,
+      'gobernador': title,
+      'celebramos': title,
     }),
   );
 
