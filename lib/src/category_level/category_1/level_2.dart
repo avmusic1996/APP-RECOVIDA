@@ -17,15 +17,19 @@ import 'usuarios.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class LevelDos extends StatelessWidget {
+class LevelDos extends StatefulWidget {
   const LevelDos({super.key});
-
   @override
+  State<LevelDos> createState() => _LevelDosState();
+}
+
+class _LevelDosState extends State<LevelDos> {
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
     final playerProgress = context.watch<PlayerProgress>();
     final audioController = context.watch<AudioController>();
     final nombre = TextEditingController();
+
     final fecha_hora = TextEditingController();
     final dias_ano = TextEditingController();
     final continente = TextEditingController();
@@ -35,7 +39,19 @@ class LevelDos extends StatelessWidget {
     final presidente = TextEditingController();
     final gobernador = TextEditingController();
     final celebramos = TextEditingController();
+    bool isVisible1 = true;
+    bool isVisible2 = false;
+    bool isVisible3 = false;
+    bool isVisible4 = false;
+    bool isVisible5 = false;
+    bool isVisible6 = false;
+    bool isVisible7 = false;
+    bool isVisible8 = false;
+    bool isVisible9 = false;
+    bool isVisible10 = false;
+    int variable = 0;
 
+    String texto = "hola";
     final url = ("http://app-juegos.epizy.com/planificacion/nivel1.php");
     // final url =
     // Uri.parse("http://app-juegos.epizy.com/planificacion/nivel1.php");
@@ -86,9 +102,10 @@ class LevelDos extends StatelessWidget {
       // final data = Map.from(jsonDecode(res.body));
       // final usuario = Usuario.fromJson(data);
 
-      Navigator.of(context).pushNamed('play');
+      Navigator.of(context).pushNamed('/play');
     }
 
+    void verify(int variable) {}
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -138,87 +155,158 @@ class LevelDos extends StatelessWidget {
               // )),
 
               const SizedBox(height: 0),
-              Container(
-                child: TextField(
-                  controller: nombre,
-                  decoration: const InputDecoration(
-                      hintText: "Nombre", border: InputBorder.none),
+
+              Visibility(
+                visible: isVisible1,
+                maintainSize: true,
+                maintainAnimation: true,
+                maintainState: true,
+                child: Container(
+                  child: TextField(
+                    controller: nombre,
+                    decoration: const InputDecoration(
+                        hintText: "Nombre", border: InputBorder.none),
+                  ),
                 ),
               ),
-              Container(
-                child: TextField(
-                  keyboardType: TextInputType.emailAddress,
-                  controller: fecha_hora,
-                  decoration: const InputDecoration(
-                      hintText: "fecha_hora", border: InputBorder.none),
+              Visibility(
+                visible: isVisible2,
+                maintainSize: true,
+                maintainAnimation: true,
+                maintainState: true,
+                child: Container(
+                  child: TextField(
+                    keyboardType: TextInputType.emailAddress,
+                    controller: fecha_hora,
+                    decoration: const InputDecoration(
+                        hintText: "fecha_hora", border: InputBorder.none),
+                  ),
                 ),
               ),
-              Container(
-                child: TextField(
-                  keyboardType: TextInputType.emailAddress,
-                  controller: dias_ano,
-                  decoration: const InputDecoration(
-                      hintText: "dias_año", border: InputBorder.none),
+              Visibility(
+                visible: isVisible3,
+                maintainSize: true,
+                maintainAnimation: true,
+                maintainState: true,
+                child: Container(
+                  child: TextField(
+                    keyboardType: TextInputType.emailAddress,
+                    controller: dias_ano,
+                    decoration: const InputDecoration(
+                        hintText: "dias_año", border: InputBorder.none),
+                  ),
                 ),
               ),
-              Container(
-                child: TextField(
-                  keyboardType: TextInputType.emailAddress,
-                  controller: continente,
-                  decoration: const InputDecoration(
-                      hintText: "continente", border: InputBorder.none),
+              Visibility(
+                visible: isVisible4,
+                maintainSize: true,
+                maintainAnimation: true,
+                maintainState: true,
+                child: Container(
+                  child: TextField(
+                    keyboardType: TextInputType.emailAddress,
+                    controller: continente,
+                    decoration: const InputDecoration(
+                        hintText: "continente", border: InputBorder.none),
+                  ),
                 ),
               ),
-              Container(
-                child: TextField(
-                  keyboardType: TextInputType.emailAddress,
-                  controller: pais,
-                  decoration: const InputDecoration(
-                      hintText: "pais", border: InputBorder.none),
+
+              Visibility(
+                visible: isVisible5,
+                maintainSize: true,
+                maintainAnimation: true,
+                maintainState: true,
+                child: Container(
+                  child: TextField(
+                    keyboardType: TextInputType.emailAddress,
+                    controller: pais,
+                    decoration: const InputDecoration(
+                        hintText: "pais", border: InputBorder.none),
+                  ),
                 ),
               ),
-              Container(
-                child: TextField(
-                  keyboardType: TextInputType.emailAddress,
-                  controller: ciudad,
-                  decoration: const InputDecoration(
-                      hintText: "ciudad", border: InputBorder.none),
+              Visibility(
+                visible: isVisible6,
+                maintainSize: true,
+                maintainAnimation: true,
+                maintainState: true,
+                child: Container(
+                  child: TextField(
+                    keyboardType: TextInputType.emailAddress,
+                    controller: ciudad,
+                    decoration: const InputDecoration(
+                        hintText: "ciudad", border: InputBorder.none),
+                  ),
                 ),
               ),
-              Container(
-                child: TextField(
-                  keyboardType: TextInputType.emailAddress,
-                  controller: barrio,
-                  decoration: const InputDecoration(
-                      hintText: "barrio", border: InputBorder.none),
+              Visibility(
+                visible: isVisible7,
+                maintainSize: true,
+                maintainAnimation: true,
+                maintainState: true,
+                child: Container(
+                  child: TextField(
+                    keyboardType: TextInputType.emailAddress,
+                    controller: barrio,
+                    decoration: const InputDecoration(
+                        hintText: "barrio", border: InputBorder.none),
+                  ),
                 ),
               ),
-              Container(
-                child: TextField(
-                  keyboardType: TextInputType.emailAddress,
-                  controller: presidente,
-                  decoration: const InputDecoration(
-                      hintText: "presidente", border: InputBorder.none),
+              Visibility(
+                visible: isVisible8,
+                maintainSize: true,
+                maintainAnimation: true,
+                maintainState: true,
+                child: Container(
+                  child: TextField(
+                    keyboardType: TextInputType.emailAddress,
+                    controller: presidente,
+                    decoration: const InputDecoration(
+                        hintText: "presidente", border: InputBorder.none),
+                  ),
                 ),
               ),
-              Container(
-                child: TextField(
-                  keyboardType: TextInputType.emailAddress,
-                  controller: gobernador,
-                  decoration: const InputDecoration(
-                      hintText: "gobernador", border: InputBorder.none),
+              Visibility(
+                visible: isVisible9,
+                maintainSize: true,
+                maintainAnimation: true,
+                maintainState: true,
+                child: Container(
+                  child: TextField(
+                    keyboardType: TextInputType.emailAddress,
+                    controller: gobernador,
+                    decoration: const InputDecoration(
+                        hintText: "gobernador", border: InputBorder.none),
+                  ),
                 ),
               ),
-              Container(
-                child: TextField(
-                  keyboardType: TextInputType.emailAddress,
-                  controller: celebramos,
-                  decoration: const InputDecoration(
-                      hintText: "celebramos", border: InputBorder.none),
+              Visibility(
+                visible: isVisible10 = false,
+                maintainSize: true,
+                maintainAnimation: true,
+                maintainState: true,
+                child: Container(
+                  child: TextField(
+                    keyboardType: TextInputType.emailAddress,
+                    controller: celebramos,
+                    decoration: const InputDecoration(
+                        hintText: "celebramos", border: InputBorder.none),
+                  ),
                 ),
               ),
+
               ElevatedButton(
-                  onPressed: register, child: const Text("Crear cuenta")),
+
+                  // onPressed: register, child: const Text("Crear cuenta")),
+                  child: Text(texto),
+                  onPressed: () {
+                    setState(() {
+                      texto = "siguiente";
+                    });
+                  }),
+
               // GestureDetector(
               //     onTap: () {
               //       GoRouter.of(context).go('/select/level');
@@ -274,3 +362,5 @@ class LevelDos extends StatelessWidget {
     );
   }
 }
+
+void setState(Null Function() param0) {}
