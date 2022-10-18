@@ -82,7 +82,6 @@ Future<void> main() async {
 /// Without logging and crash reporting, this would be `void main()`.
 void guardedMain() {
   if (kReleaseMode) {
-    // Don't log anything below warnings in production.
     Logger.root.level = Level.WARNING;
   }
   Logger.root.onRecord.listen((record) {
