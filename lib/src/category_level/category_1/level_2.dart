@@ -2,7 +2,10 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:game_template/src/category_level/category_1/category_level1.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -86,7 +89,7 @@ class LevelDos extends StatelessWidget {
       // final data = Map.from(jsonDecode(res.body));
       // final usuario = Usuario.fromJson(data);
 
-      Navigator.of(context).pushNamed('play');
+      Navigator.of(context).pop('Cauno');
     }
 
     return Scaffold(
@@ -138,19 +141,20 @@ class LevelDos extends StatelessWidget {
               // )),
 
               const SizedBox(height: 0),
+
               Container(
-                child: TextField(
+                child: TextFormField(
                   controller: nombre,
-                  decoration: const InputDecoration(
-                      hintText: "Nombre", border: InputBorder.none),
+                  decoration: const InputDecoration(hintText: 'Nombre'),
+                  //validator: FormFieldValidator.hinText(value) => nombre;
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
               ),
               Container(
                 child: TextField(
                   keyboardType: TextInputType.emailAddress,
                   controller: fecha_hora,
-                  decoration: const InputDecoration(
-                      hintText: "fecha_hora", border: InputBorder.none),
+                  decoration: const InputDecoration(hintText: "fecha_hora"),
                 ),
               ),
               Container(
@@ -217,8 +221,9 @@ class LevelDos extends StatelessWidget {
                       hintText: "celebramos", border: InputBorder.none),
                 ),
               ),
-              ElevatedButton(
-                  onPressed: register, child: const Text("Crear cuenta")),
+
+              ElevatedButton(onPressed: register, child: const Text("guardar")),
+
               // GestureDetector(
               //     onTap: () {
               //       GoRouter.of(context).go('/select/level');
@@ -231,37 +236,37 @@ class LevelDos extends StatelessWidget {
           ),
           rectangularMenuArea: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            // children: [
-            //   GestureDetector(
-            //       onTap: () {
-            //         GoRouter.of(context).pop();
-            //       },
-            //       child: Image(
-            //         height: 50,
-            //         image: AssetImage('assets/images/atras.png'),
-            //       )),
-            //   GestureDetector(
-            //       onTap: () {
-            //         audioController.playSfx(SfxType.buttonTap);
+            children: [
+              GestureDetector(
+                  onTap: () {
+                    GoRouter.of(context).go('/Cauno');
+                  },
+                  child: Image(
+                    height: 50,
+                    image: AssetImage('assets/images/atras.png'),
+                  )),
+              //   GestureDetector(
+              //       onTap: () {
+              //         audioController.playSfx(SfxType.buttonTap);
 
-            //         GoRouter.of(context).go('/');
-            //       },
-            //       child: Image(
-            //         height: 50,
-            //         image: AssetImage('assets/images/home.png'),
-            //       )),
-            //   GestureDetector(
-            //       onTap: () {
-            //         audioController.playSfx(SfxType.buttonTap);
+              //         GoRouter.of(context).go('/');
+              //       },
+              //       child: Image(
+              //         height: 50,
+              //         image: AssetImage('assets/images/home.png'),
+              //       )),
+              //   GestureDetector(
+              //       onTap: () {
+              //         audioController.playSfx(SfxType.buttonTap);
 
-            //         GoRouter.of(context).push('/settings');
-            //       },
-            //       //alignment: Alignment.bottomCenter,
-            //       child: Image(
-            //         height: 50,
-            //         image: AssetImage('assets/images/siguiente.png'),
-            //       )),
-            // ],
+              //         GoRouter.of(context).push('/settings');
+              //       },
+              //       //alignment: Alignment.bottomCenter,
+              //       child: Image(
+              //         height: 50,
+              //         image: AssetImage('assets/images/siguiente.png'),
+              //       )),
+            ],
           ),
         ),
       ),
