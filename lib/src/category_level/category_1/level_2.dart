@@ -20,15 +20,19 @@ import 'usuarios.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class LevelDos extends StatelessWidget {
+class LevelDos extends StatefulWidget {
   const LevelDos({super.key});
-
   @override
+  State<LevelDos> createState() => _LevelDosState();
+}
+
+class _LevelDosState extends State<LevelDos> {
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
     final playerProgress = context.watch<PlayerProgress>();
     final audioController = context.watch<AudioController>();
     final nombre = TextEditingController();
+
     final fecha_hora = TextEditingController();
     final dias_ano = TextEditingController();
     final continente = TextEditingController();
@@ -38,7 +42,19 @@ class LevelDos extends StatelessWidget {
     final presidente = TextEditingController();
     final gobernador = TextEditingController();
     final celebramos = TextEditingController();
+    bool isVisible1 = true;
+    bool isVisible2 = false;
+    bool isVisible3 = false;
+    bool isVisible4 = false;
+    bool isVisible5 = false;
+    bool isVisible6 = false;
+    bool isVisible7 = false;
+    bool isVisible8 = false;
+    bool isVisible9 = false;
+    bool isVisible10 = false;
+    int variable = 0;
 
+    String texto = "hola";
     final url = ("http://app-juegos.epizy.com/planificacion/nivel1.php");
     // final url =
     // Uri.parse("http://app-juegos.epizy.com/planificacion/nivel1.php");
@@ -89,9 +105,10 @@ class LevelDos extends StatelessWidget {
       // final data = Map.from(jsonDecode(res.body));
       // final usuario = Usuario.fromJson(data);
 
-      Navigator.of(context).pop('Cauno');
+      Navigator.of(context).pushNamed('play');
     }
 
+    void verify(int variable) {}
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -141,20 +158,19 @@ class LevelDos extends StatelessWidget {
               // )),
 
               const SizedBox(height: 0),
-
               Container(
-                child: TextFormField(
+                child: TextField(
                   controller: nombre,
-                  decoration: const InputDecoration(hintText: 'Nombre'),
-                  //validator: FormFieldValidator.hinText(value) => nombre;
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  decoration: const InputDecoration(
+                      hintText: "Nombre", border: InputBorder.none),
                 ),
               ),
               Container(
                 child: TextField(
                   keyboardType: TextInputType.emailAddress,
                   controller: fecha_hora,
-                  decoration: const InputDecoration(hintText: "fecha_hora"),
+                  decoration: const InputDecoration(
+                      hintText: "fecha_hora", border: InputBorder.none),
                 ),
               ),
               Container(
@@ -221,9 +237,8 @@ class LevelDos extends StatelessWidget {
                       hintText: "celebramos", border: InputBorder.none),
                 ),
               ),
-
-              ElevatedButton(onPressed: register, child: const Text("guardar")),
-
+              ElevatedButton(
+                  onPressed: register, child: const Text("Crear cuenta")),
               // GestureDetector(
               //     onTap: () {
               //       GoRouter.of(context).go('/select/level');
@@ -279,3 +294,5 @@ class LevelDos extends StatelessWidget {
     );
   }
 }
+
+void setState(Null Function() param0) {}
